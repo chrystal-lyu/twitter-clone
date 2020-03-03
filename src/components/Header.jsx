@@ -1,17 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import logo from '../media/logo.svg';
+import  { ReactComponent as AppLogo } from '../media/logo.svg';
 
 const Wrapper = styled.div `
   display: flex;
   flex-direction: column;
   width: 275px;
+  padding: 20px;
 `
 
-const Logo = styled.img `
-  width: 50px;
-  padding: 0 20px;
+const Icon = styled(AppLogo) `
+  fill: white;
+  width: 30%;
+  height: 30%;
 `
 
 const MenuItem = styled.a `
@@ -24,7 +26,7 @@ const MenuItem = styled.a `
   width: fit-content;
   border-radius: 999px;
   transition: background-color .2s;
-  transition: color .2s;
+  transition: all .2s;
 
   &:hover {
     background-color: #20303D;
@@ -35,7 +37,7 @@ const MenuItem = styled.a `
 function Header () {
   return (
     <Wrapper>
-      <Logo src={logo} alt="logo"/>
+      <MenuItem href="/"><Icon/></MenuItem>
       <MenuItem href="/">Home</MenuItem>
       <MenuItem href="/">Explore</MenuItem>
       <MenuItem href="/">Notifications</MenuItem>
