@@ -7,12 +7,13 @@ import SideBar from './components/SideBar';
 
 const Wrapper = styled.div `
   box-sizing: border-box;
+  font-style: Roboto,Ubuntu,"Helvetica Neue",sans-serif;
   background-color: rgb(21, 32, 43);
   color: rgb(255, 255, 255);
   min-height: 100vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   padding: 20px;
 `
 
