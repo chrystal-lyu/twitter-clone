@@ -43,7 +43,10 @@ class Main extends React.Component {
     }
     const newList = [...this.state.list];
     newList.push(newTweet);
-    this.setState({ list: newList });
+    this.setState({ 
+      list: newList,
+      newTweet: ''
+    });
   }
 
   render () {
