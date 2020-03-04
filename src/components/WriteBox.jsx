@@ -46,24 +46,6 @@ Button.defaultProps = {
 }
 
 class WriteBox extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      inputValue: ""
-    }
-    this.changeValue = this.changeValue.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-  };
-
-  changeValue (event) {
-    const value = event.target.value;
-    this.setState({inputValue: value});
-  }
-
-  handleClick () {
-    console.log('tweeted!')
-  }
-
   render () {
     return (
       <Wrapper>
@@ -72,13 +54,13 @@ class WriteBox extends React.Component {
           <InputBox
             placeholder = "What's happening?"
             type = "text"
-            value = {this.state.inputValue}
-            onChange = {this.changeValue}
+            value = {this.props.value}
+            onChange = {this.props.handleChangeValue}
           />
         </Compose>
         <Button
          role="button"
-         onClick= {this.handleClick}
+         onClick= {this.props.handleAddTweet}
         >Tweet</Button>
       </Wrapper>
     );

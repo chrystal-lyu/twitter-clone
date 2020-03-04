@@ -20,15 +20,46 @@ const Divider = styled.div`
   background-color: rgb(37, 51, 65);
 `
 
-function Main () {
-  return (
-    <Wrapper>
-      <Home>Home</Home>
-      <WriteBox/>
-      <Divider/>
-      <FeedList/>
-    </Wrapper>
-  );
+class Main extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      newTweet: '',
+      list: []
+    }
+    this.changeValue = this.changeValue.bind(this);
+    this.addTweet = this.addTweet.bind(this);
+  }
+
+  changeValue (e) {
+    const { value } = e.target;
+    this.setState({ newTweet: value });
+  }
+
+  addTweet () {
+    const newTweet = {
+      id: 1 + Math.random(),
+      value: this.state.newTweet
+    }
+    const newList = [...this.state.list];
+    newList.push(newTweet);
+    this.setState({ list: newList });
+  }
+
+  render () {
+    return (
+      <Wrapper>
+        <Home>Home</Home>
+        <WriteBox 
+          value = {this.state.newTweet}
+          handleChangeValue = {this.changeValue} 
+          handleAddTweet = {this.addTweet}
+        />
+        <Divider/>
+        <FeedList data={this.state.list}/>
+      </Wrapper>
+    );
+  }
 }
 
 export default Main;
