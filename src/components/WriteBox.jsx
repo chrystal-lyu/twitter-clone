@@ -25,12 +25,14 @@ const InputBox = styled.textarea`
   font-size: 18px;
   color: white;
 `
-const Button = styled.div`
+const Button = styled.button`
+  color: white;
   font-size: 16px;
   font-weight: 600;
   width: 65px;
   padding: 10px;
   margin: 10px 0 0 auto;
+  border: none;
   border-radius: 99px;
   display: flex;
   justify-content: center;
@@ -50,11 +52,16 @@ class WriteBox extends React.Component {
       inputValue: ""
     }
     this.changeValue = this.changeValue.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   };
 
   changeValue (event) {
     const value = event.target.value;
     this.setState({inputValue: value});
+  }
+
+  handleClick () {
+    console.log('tweeted!')
   }
 
   render () {
@@ -69,7 +76,10 @@ class WriteBox extends React.Component {
             onChange = {this.changeValue}
           />
         </Compose>
-        <Button role="button">Tweet</Button>
+        <Button
+         role="button"
+         onClick= {this.handleClick}
+        >Tweet</Button>
       </Wrapper>
     );
   }
