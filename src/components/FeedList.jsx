@@ -5,15 +5,20 @@ const Wrapper = styled.div `
   padding: 0 20px;
 `
 
-function FeedList () {
-  return (
-    <Wrapper>
-      <div>Feed List</div>
-      <div>Feed List</div>
-      <div>Feed List</div>
-      <div>Feed List</div>
-    </Wrapper>
-  );
+class FeedList extends React.Component {
+  render () {
+    return (
+      <Wrapper>
+        <ul>
+          {this.props.data.map((item) => {
+            return (
+              <li key={item.id}>{item.value}</li>
+            )
+          })}
+        </ul>
+      </Wrapper>
+    );
+  }
 }
 
 export default FeedList;
