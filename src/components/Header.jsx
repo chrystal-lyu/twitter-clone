@@ -12,8 +12,6 @@ const Wrapper = styled.div `
 
 const Icon = styled(AppLogo) `
   fill: white;
-  width: 30%;
-  height: 30%;
 `
 
 const MenuItem = styled.a `
