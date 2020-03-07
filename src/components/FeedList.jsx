@@ -7,17 +7,25 @@ const Wrapper = styled.div `
 
 class FeedList extends React.Component {
   render () {
-    return (
-      <Wrapper>
-        <ul>
-          {this.props.data.map((item) => {
-            return (
-              <li key={item.id}>{item.value}</li>
-            )
-          })}
-        </ul>
-      </Wrapper>
-    );
+    if (this.props.data.length === 0) {
+      return (
+        <Wrapper>
+            Be the first one to tweet!
+        </Wrapper>
+      )
+    } else {
+      return (
+        <Wrapper>
+          <ul>
+            {this.props.data.map((item) => {
+              return (
+                <li key={item.id}>{item.value}</li>
+              )
+            })}
+          </ul>
+        </Wrapper>
+      );
+    }
   }
 }
 
