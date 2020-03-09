@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import FeedItem from './FeedItem';
 
 const Wrapper = styled.div `
   padding: 0 20px;
@@ -19,7 +20,7 @@ class FeedList extends React.Component {
           <ul>
             {this.props.data.map((item) => {
               return (
-                <li key={item.id}>{item.value}</li>
+                <FeedItem key={item.id} value={item.value}/>
               )
             })}
           </ul>
