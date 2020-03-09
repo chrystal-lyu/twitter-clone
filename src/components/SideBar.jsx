@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Search from './Search';
 
 const Wrapper = styled.div `
   border: 1px solid lightblue;
@@ -8,7 +9,9 @@ const Wrapper = styled.div `
 
 function SideBar () {
   return (
-    <Wrapper>SideBar Column</Wrapper>
+    <Wrapper>
+      <Search/>
+    </Wrapper>
   );
 }
 
