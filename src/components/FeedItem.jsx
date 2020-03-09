@@ -1,27 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const UserAvatar = () => {
+const UserAvatar = (props) => {
   return (
-    <img alt='avatar' src='https://randomuser.me/api/portraits/women/64.jpg'/>
+    <img alt='avatar' src={props.src || ''}/>
   )
 }
 
-const UserName = () => {
+const UserName = (props) => {
   return (
-    <div>My Name</div>
+    <div>{props.name || ''}</div>
   )
 }
 
-const UserHandle = () => {
+const UserHandle = (props) => {
   return (
-    <div><a href='/'>@myhandle</a></div>
+    <div><a href='/'>@{props.handle || ''}</a></div>
   )
 }
 
 const TweetBody = (props) => {
   return (
-    <div>{props.body}</div>
+    <div>{props.body || ''}</div>
   )
 }
 
@@ -35,10 +35,10 @@ class FeedItem extends React.Component {
   render () {
     return (
     <li>
-      <UserAvatar/>
-      <UserName/>
-      <UserHandle/>
-      <TweetBody body={this.props.value}/>
+      <UserAvatar src={this.props.avatarImg}/>
+      <UserName name={this.props.name}/>
+      <UserHandle handle={this.props.handle}/>
+      <TweetBody body={this.props.body}/>
       <TimeStamp/>
     </li>
     )

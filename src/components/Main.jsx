@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import WriteBox from './WriteBox';
 import FeedList from './FeedList';
 
+import json from '../twitter.json'
+
 const Wrapper = styled.div `
   border-right: 1px solid rgb(56, 68, 77);
   border-left: 1px solid rgb(56, 68, 77);
@@ -31,6 +33,12 @@ class Main extends React.Component {
     this.addTweet = this.addTweet.bind(this);
   }
 
+  componentDidMount () {
+    this.setState({
+      list: json
+    })
+  }
+
   changeValue (e) {
     const { value } = e.target;
     this.setState({ newTweet: value });
@@ -39,7 +47,7 @@ class Main extends React.Component {
   addTweet () {
     const newTweet = {
       id: 1 + Math.random(),
-      value: this.state.newTweet
+      text: this.state.newTweet
     }
     const newList = [...this.state.list];
     newList.push(newTweet);

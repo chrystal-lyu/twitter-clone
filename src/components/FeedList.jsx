@@ -20,7 +20,13 @@ class FeedList extends React.Component {
           <ul>
             {this.props.data.map((item) => {
               return (
-                <FeedItem key={item.id} value={item.value}/>
+                <FeedItem
+                  key={item.id}
+                  body={item.text}
+                  // avatarImg={item.user.profile_image_url}
+                  // name={item.user.screen_name}
+                  // handle={item.user.handle}
+                />
               )
             })}
           </ul>

@@ -1,0 +1,44 @@
+[
+  {
+    "text": "In preparation for the NFL lockout, I will be spending twice as much time analyzing my fantasy baseball team during ...",
+    "favorited": false,
+    "source": "<a href=\"http://twitter.com/\" rel=\"nofollow\">Twitter for iPhone</a>",
+    "entities": {
+      "user_mentions": [],
+      "urls": [],
+      "hashtags": []
+    },
+    "user": {
+      "profile_image_url": "https://randomuser.me/api/portraits/women/64.jpg",
+      "followers_count": 48, 
+      "description": "watcha doin in my waters?",
+      "verified": false,
+      "location": "Texas", 
+      "screen_name": "Old Greg",
+      "handle": "OldGREG85",
+      "id": 80177619
+    },
+    "id": 1
+  },
+  {
+    "text": "I was looking for the sample result of Streaming API. I got exactly what I was looking for. Thanks a lot!",
+    "favorited": false,
+    "source": "<a href=\"http://twitter.com/\" rel=\"nofollow\">Twitter for iPhone</a>",
+    "entities": {
+      "user_mentions": [],
+      "urls": [],
+      "hashtags": []
+    },
+    "user": {
+      "profile_image_url": "https://randomuser.me/api/portraits/women/20.jpg",
+      "followers_count": 5325843, 
+      "description": "how are y'all doing?",
+      "verified": true,
+      "location": "San Francisco", 
+      "screen_name": "vanglian",
+      "handle":"vanglian89",
+      "id": 80177620
+    },
+    "id": 2
+  }
+]
