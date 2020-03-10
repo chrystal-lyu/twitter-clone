@@ -9,21 +9,34 @@ const Wrapper = styled.div`
   justify-content: center;
 `
 const SearchBox = styled.input`
-  margin: 15px;
-  padding: 10px;
+  margin: 15px 0 15px 15px;
+  padding: 10px 15px;
   background: rgb(37,51,65);
   color: white;
   height: 30px;
-  width: 80%;
+  width: auto;
   font-size: 16px;
   border: none;
+  border-radius: 99px;
 
   &:focus {
     outline: none;
   }
 `
 const SearchResult = styled.div`
-  border-top: 1px solid rgb(56,68,77);
+  background-color: #182734;
+  border-radius: 15px; 
+  padding: 0 15px;
+  margin-left: 15px;
+  
+  ul {
+    padding: 0;
+    list-style-type: none;
+
+    li {
+      margin-top: 10px;
+    }
+  }
 `
 
 class Search extends React.Component {
@@ -64,7 +77,7 @@ class Search extends React.Component {
         <SearchBox
           name = 'text'
           type = 'text'
-          placeholder = 'What are you looking for?'
+          placeholder = 'Search Twitter'
           value = {searchValue}
           onChange = {this.handleChange}
         />
