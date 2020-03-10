@@ -47,7 +47,12 @@ class Main extends React.Component {
   addTweet () {
     const newTweet = {
       id: 1 + Math.random(),
-      text: this.state.newTweet
+      text: this.state.newTweet,
+      user: {
+        screen_name: 'Naomi Scott',
+        handle: 'naomiscott',
+        profile_image_url: 'https://randomuser.me/api/portraits/men/57.jpg'
+      }
     }
     const newList = [...this.state.list];
     newList.push(newTweet);

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const UserAvatar = (props) => {
   return (
-    <img alt='avatar' src={props.src || ''}/>
+    <img alt='avatar' src={props.src}/>
   )
 }
 
