@@ -1,21 +1,56 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Wrapper = styled.li`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  padding: 0 0 15px 15px;
+  border-bottom: 1px solid rgb(56, 68, 77);
+`
+const Text = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+const Head = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+const Avatar = styled.img`
+  border-radius: 100px;
+  margin-right: 15px;
+`
+const Name = styled.div`
+  font-weight: 800;
+`
+const Handle = styled.div`
+  margin-left: 5px;
+
+  a {
+    color: rgb(136, 153, 166);
+    text-decoration: none;
+  }
+`
+const Dot = styled.span`
+  color: rgb(136, 153, 166);
+  padding: 0 5px;
+`
+
 const UserAvatar = (props) => {
   return (
-    <img alt='avatar' src={props.src}/>
+    <Avatar alt='avatar' width='50px;' src={props.src}/>
   )
 }
 
 const UserName = (props) => {
   return (
-    <div>{props.name}</div>
+    <Name>{props.name}</Name>
   )
 }
 
 const UserHandle = (props) => {
   return (
-    <div><a href='/'>@{props.handle}</a></div>
+    <Handle><a href='/'>@{props.handle}</a></Handle>
   )
 }
 
@@ -27,20 +62,25 @@ const TweetBody = (props) => {
 
 const TimeStamp = () => {
   return (
-    <div>{new Date().toLocaleDateString()} {new Date().toTimeString()}</div>
+    <div>{new Date().toLocaleDateString()}</div>
   )
 }
 
 class FeedItem extends React.Component {
   render () {
     return (
-    <li>
+    <Wrapper>
       <UserAvatar src={this.props.avatarImg}/>
-      <UserName name={this.props.name}/>
-      <UserHandle handle={this.props.handle}/>
-      <TweetBody body={this.props.body}/>
-      <TimeStamp/>
-    </li>
+      <Text>
+        <Head>
+          <UserName name={this.props.name}/>
+          <UserHandle handle={this.props.handle}/>
+          <Dot>·</Dot>
+          <TimeStamp/>
+        </Head>
+        <TweetBody body={this.props.body}/>
+      </Text>
+    </Wrapper>
     )
   }
 }

@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import FeedItem from './FeedItem';
 
 const Wrapper = styled.div `
-  padding: 0 20px;
+  /* padding: 0 20px; */
 `
 const List = styled.ul`
   display: flex;
   flex-direction: column-reverse;
   list-style-type: none;
+  padding: 0;
 `
 
 class FeedList extends React.Component {

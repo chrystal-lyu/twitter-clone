@@ -10,8 +10,8 @@ const Compose = styled.div`
   justify-content: space-between;
 `
 const Avatar = styled.div`
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 100px;
   background-color: papayawhip;
 `
