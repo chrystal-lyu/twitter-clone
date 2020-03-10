@@ -15,7 +15,7 @@ const SearchBoxContainer = styled.div`
   height: 53px;
 `
 const SearchBox = styled.input`
-  margin: 5px 0 5px 15px;
+  margin: 5px 0 5px 40px;
   padding: 10px 15px;
   background: rgb(37,51,65);
   color: white;
@@ -34,7 +34,7 @@ const SearchResult = styled.div`
   border-radius: 15px; 
   padding: 0 15px;
   margin-top: 10px;
-  margin-left: 15px;
+  margin-left: 40px;
   
   ul {
     padding: 0;
