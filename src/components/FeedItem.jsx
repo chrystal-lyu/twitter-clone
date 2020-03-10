@@ -9,19 +9,19 @@ const UserAvatar = (props) => {
 
 const UserName = (props) => {
   return (
-    <div>{props.name || ''}</div>
+    <div>{props.name}</div>
   )
 }
 
 const UserHandle = (props) => {
   return (
-    <div><a href='/'>@{props.handle || ''}</a></div>
+    <div><a href='/'>@{props.handle}</a></div>
   )
 }
 
 const TweetBody = (props) => {
   return (
-    <div>{props.body || ''}</div>
+    <div>{props.body}</div>
   )
 }
 
