@@ -16,6 +16,9 @@ const Home = styled.div`
   padding: 15px;
   font-size: 19px;
   font-weight: 800;
+  position: sticky;
+  top: 0;
+  background-color: #15202A;
 `
 const Divider = styled.div`
   height: 10px;

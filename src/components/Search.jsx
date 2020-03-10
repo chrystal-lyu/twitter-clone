@@ -8,12 +8,18 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
 `
+const SearchBoxContainer = styled.div`
+  position: sticky;
+  top: 0;
+  background-color: #15202A;
+  height: 53px;
+`
 const SearchBox = styled.input`
-  margin: 15px 0 15px 15px;
+  margin: 5px 0 5px 15px;
   padding: 10px 15px;
   background: rgb(37,51,65);
   color: white;
-  height: 30px;
+  height: 20px;
   width: auto;
   font-size: 16px;
   border: none;
@@ -27,6 +33,7 @@ const SearchResult = styled.div`
   background-color: #182734;
   border-radius: 15px; 
   padding: 0 15px;
+  margin-top: 10px;
   margin-left: 15px;
   
   ul {
@@ -74,13 +81,15 @@ class Search extends React.Component {
     const { searchValue, searchResult} = this.state;
     return (
       <Wrapper>
-        <SearchBox
-          name = 'text'
-          type = 'text'
-          placeholder = 'Search Twitter'
-          value = {searchValue}
-          onChange = {this.handleChange}
-        />
+        <SearchBoxContainer>
+          <SearchBox
+            name = 'text'
+            type = 'text'
+            placeholder = 'Search Twitter'
+            value = {searchValue}
+            onChange = {this.handleChange}
+          />
+        </SearchBoxContainer>
         <SearchResult>
           <ul>
             {searchResult.map((item) => {
