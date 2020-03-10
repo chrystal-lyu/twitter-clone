@@ -5,6 +5,11 @@ import FeedItem from './FeedItem';
 const Wrapper = styled.div `
   padding: 0 20px;
 `
+const List = styled.ul`
+  display: flex;
+  flex-direction: column-reverse;
+  list-style-type: none;
+`
 
 class FeedList extends React.Component {
   render () {
@@ -17,7 +22,7 @@ class FeedList extends React.Component {
     } else {
       return (
         <Wrapper>
-          <ul>
+          <List>
             {this.props.data.map((item) => {
               return (
                 <FeedItem
@@ -29,7 +34,7 @@ class FeedList extends React.Component {
                 />
               )
             })}
-          </ul>
+          </List>
         </Wrapper>
       );
     }
