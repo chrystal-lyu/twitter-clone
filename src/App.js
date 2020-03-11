@@ -1,12 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
 
 import Header from './components/Header';
 import Main from './components/Main';
 import SideBar from './components/SideBar';
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    box-sizing: border-box;
+    overscroll-behavior: none;
+  }
+`
 const Wrapper = styled.div `
-  box-sizing: border-box;
   font-style: Roboto,Ubuntu,"Helvetica Neue",sans-serif;
   background-color: rgb(21, 32, 43);
   color: rgb(255, 255, 255);
@@ -19,6 +25,7 @@ const Wrapper = styled.div `
 function App() {
   return (
     <Wrapper>
+      <GlobalStyle/>
       <Header/>
       <Main/>
       <SideBar/>
