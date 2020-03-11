@@ -35,6 +35,10 @@ const Dot = styled.span`
   color: rgb(136, 153, 166);
   padding: 0 5px;
 `
+const Time = styled.div`
+  color: rgb(136, 153, 166);
+  font-size: 15px;
+`
 
 const UserAvatar = (props) => {
   return (
@@ -62,7 +66,7 @@ const TweetBody = (props) => {
 
 const TimeStamp = () => {
   return (
-    <div>{new Date().toLocaleDateString()}</div>
+    <Time>{new Date().toLocaleDateString()}</Time>
   )
 }
 
