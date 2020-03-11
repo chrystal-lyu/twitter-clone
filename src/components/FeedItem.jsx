@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import { youtube_parser } from '../common/helper.js'
 
+import FeedUrl from './FeedUrl'
+
 const Wrapper = styled.li`
   display: flex;
   flex-direction: row;
@@ -64,9 +66,11 @@ const TweetBody = (props) => {
   return (
     <div>
       {props.body}
-      <div><img alt={props.title} src={props.url_img_src}/></div>
-      <div>{props.url_title}</div>
-      {/* <div>{props.url_description}</div> */}
+      <FeedUrl
+        img_src={props.url_img_src}
+        title={props.url_title}
+        description={props.url_description}
+      />
     </div>
   )
 }
@@ -98,10 +102,10 @@ class FeedItem extends React.Component {
       .then((res) => res.json())
       .then(
         (data) => {
-          // add urls validation later e.g. invalid video url
-          let title = data.items[0].snippet.title;
-          let description = data.items[0].snippet.description;
-          let img_src = data.items[0].snippet.thumbnails.default.url;
+          let response = data.items[0].snippet;
+          let title = response.title;
+          let description = response.description;
+          let img_src = response.thumbnails.standard.url;
           this.setState({
             title,
             description,
