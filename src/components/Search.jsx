@@ -12,15 +12,14 @@ const SearchBoxContainer = styled.div`
   position: sticky;
   top: 0;
   background-color: #15202A;
-  height: 53px;
+  padding: 5px 0 5px 40px;
 `
 const SearchBox = styled.input`
-  margin: 5px 0 5px 40px;
   padding: 10px 15px;
   background: rgb(37,51,65);
   color: white;
   height: 20px;
-  width: auto;
+  width: 280px;
   font-size: 16px;
   border: none;
   border-radius: 99px;
@@ -85,7 +84,7 @@ class Search extends React.Component {
           <SearchBox
             name = 'text'
             type = 'text'
-            placeholder = 'Search Twitter'
+            placeholder = 'Search'
             value = {searchValue}
             onChange = {this.handleChange}
           />
