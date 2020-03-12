@@ -15,10 +15,15 @@ const Wrapper = styled.li`
 const Text = styled.div`
   display: flex;
   flex-direction: column;
+  width: 500px;
+  margin-left:15px;
 `
 const Head = styled.div`
   display: flex;
   flex-direction: row;
+`
+const AvatarContainer = styled.div`
+  width:50px;
 `
 const Avatar = styled.img`
   border-radius: 100px;
@@ -46,7 +51,9 @@ const Time = styled.div`
 
 const UserAvatar = (props) => {
   return (
-    <Avatar alt='avatar' width='50px' height='50px' src={props.src}/>
+    <AvatarContainer>
+      <Avatar alt='avatar' width='50px' height='50px' src={props.src}/>
+    </AvatarContainer>
   )
 }
 
@@ -90,34 +97,34 @@ class FeedItem extends React.Component {
   }
 
   componentDidMount () {
-    let video_id = '';
-    const yt_api_key = process.env.REACT_APP_YOUTUBE_API_KEY;
-    let urls = this.props.entities.urls;
-    if (urls.length > 0) {
-      video_id = youtube_parser(urls[0]);
-      const endpoint = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + video_id + '&key=' + yt_api_key;
-      fetch(endpoint)
-      .then((res) => res.json())
-      .then(
-        (data) => {
-          let response = data.items[0].snippet;
-          let title = response.title;
-          let description = response.description;
-          let img_src = response.thumbnails.standard.url;
-          this.setState({
-            title,
-            description,
-            img_src,
-            url: urls[0]
-          })
-        },
-        (error) => {
-          console.log('error')
-        }
-      )
-    } else {
-      return;
-    }
+    // let video_id = '';
+    // const yt_api_key = process.env.REACT_APP_YOUTUBE_API_KEY;
+    // let urls = this.props.entities.urls;
+    // if (urls.length > 0) {
+    //   video_id = youtube_parser(urls[0]);
+    //   const endpoint = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + video_id + '&key=' + yt_api_key;
+    //   fetch(endpoint)
+    //   .then((res) => res.json())
+    //   .then(
+    //     (data) => {
+    //       let response = data.items[0].snippet;
+    //       let title = response.title;
+    //       let description = response.description;
+    //       let img_src = response.thumbnails.standard.url;
+    //       this.setState({
+    //         title,
+    //         description,
+    //         img_src,
+    //         url: urls[0]
+    //       })
+    //     },
+    //     (error) => {
+    //       console.log('error')
+    //     }
+    //   )
+    // } else {
+    //   return;
+    // }
   }
 
   renderFeedUrl () {
