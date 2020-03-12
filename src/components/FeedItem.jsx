@@ -48,6 +48,22 @@ const Time = styled.div`
   color: rgb(136, 153, 166);
   font-size: 15px;
 `
+const TweetMediaContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgb(56,68,77);
+  height: 360px;
+  margin-top: 10px;
+
+  img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
+  }
+`
 
 const UserAvatar = (props) => {
   return (
@@ -74,6 +90,7 @@ const TweetBody = (props) => {
     <div>
       {props.body}
       {props.renderFeedUrl}
+      {props.renderMedia}
     </div>
   )
 }
@@ -140,6 +157,16 @@ class FeedItem extends React.Component {
     }
   }
 
+  renderMedia() {
+    if (this.props.entities.media) {
+      return (
+        <TweetMediaContainer>
+          <img alt="" src={this.props.entities.media[0].media_url}/>
+        </TweetMediaContainer>
+      )
+    }
+  }
+
   render () {
     return (
     <Wrapper>
@@ -154,6 +181,7 @@ class FeedItem extends React.Component {
         <TweetBody
           body={this.props.body} 
           renderFeedUrl={this.renderFeedUrl()}
+          renderMedia={this.renderMedia()}
         />
       </Text>
     </Wrapper>
