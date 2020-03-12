@@ -66,11 +66,7 @@ const TweetBody = (props) => {
   return (
     <div>
       {props.body}
-      <FeedUrl
-        img_src={props.url_img_src}
-        title={props.url_title}
-        description={props.url_description}
-      />
+      {props.renderFeedUrl}
     </div>
   )
 }
@@ -84,6 +80,7 @@ const TimeStamp = () => {
 class FeedItem extends React.Component {
   constructor(props) {
     super(props);
+    this.renderFeedUrl = this.renderFeedUrl.bind(this);
     this.state = {
       title: '',
       description: '',
@@ -121,6 +118,18 @@ class FeedItem extends React.Component {
     }
   }
 
+  renderFeedUrl () {
+    if (this.state.title.length > 0) {
+      return (
+        <FeedUrl
+          img_src={this.state.img_src}
+          title={this.state.title}
+          description={this.state.description}
+        />
+      )
+    }
+  }
+
   render () {
     return (
     <Wrapper>
@@ -134,9 +143,7 @@ class FeedItem extends React.Component {
         </Head>
         <TweetBody
           body={this.props.body} 
-          url_img_src={this.state.img_src}
-          url_title={this.state.title} 
-          url_description={this.state.description}
+          renderFeedUrl={this.renderFeedUrl()}
         />
       </Text>
     </Wrapper>
