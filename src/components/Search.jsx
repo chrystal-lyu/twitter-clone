@@ -12,7 +12,7 @@ const SearchBoxContainer = styled.div`
   position: sticky;
   top: 0;
   background-color: #15202A;
-  padding: 5px 0 5px 40px;
+  padding: 10px 0 10px 40px;
 `
 const SearchBox = styled.input`
   padding: 10px 15px;
@@ -26,6 +26,12 @@ const SearchBox = styled.input`
 
   &:focus {
     outline: none;
+    box-shadow: 0 0 4px white;
+  }
+
+  ::placeholder {
+    color: rgb(136, 153, 166);
+    opacity: 1;
   }
 `
 const SearchResult = styled.div`
