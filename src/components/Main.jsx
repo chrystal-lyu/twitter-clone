@@ -37,8 +37,15 @@ class Main extends React.Component {
   }
 
   componentDidMount () {
-    this.setState({
-      list: json
+    fetch('/tweets')
+    .then(res => {
+      return res.json()
+    })
+    .then((data) => {
+      console.log(data)
+      this.setState({
+        list: data
+      });
     })
   }
 
