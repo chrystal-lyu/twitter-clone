@@ -91,7 +91,7 @@ class FeedItem extends React.Component {
 
   componentDidMount () {
     let video_id = '';
-    const yt_api_key = 'AIzaSyAA86cQC5o_v0koYynJ2mhUfmlAQHeD3As'
+    const yt_api_key = process.env.REACT_APP_YOUTUBE_API_KEY;
     let urls = this.props.entities.urls;
     if (urls.length > 0) {
       video_id = youtube_parser(urls[0]);
