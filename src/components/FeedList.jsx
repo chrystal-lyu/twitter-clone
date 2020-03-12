@@ -33,6 +33,7 @@ class FeedList extends React.Component {
                   avatarImg={item.user.profile_image_url}
                   name={item.user.name}
                   handle={item.user.screen_name}
+                  time={item.created_at}
                 />
               )
             })}

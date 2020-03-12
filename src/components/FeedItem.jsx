@@ -78,9 +78,9 @@ const TweetBody = (props) => {
   )
 }
 
-const TimeStamp = () => {
+const TimeStamp = (props) => {
   return (
-    <Time>{new Date().toLocaleDateString()}</Time>
+    <Time>{props.time.substring(0,11)}</Time>
   )
 }
 
@@ -149,7 +149,7 @@ class FeedItem extends React.Component {
           <UserName name={this.props.name}/>
           <UserHandle handle={this.props.handle}/>
           <Dot>·</Dot>
-          <TimeStamp/>
+          <TimeStamp time={this.props.time}/>
         </Head>
         <TweetBody
           body={this.props.body} 
