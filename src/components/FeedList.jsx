@@ -31,8 +31,8 @@ class FeedList extends React.Component {
                   body={item.text}
                   entities={item.entities}
                   avatarImg={item.user.profile_image_url}
-                  name={item.user.screen_name}
-                  handle={item.user.handle}
+                  name={item.user.name}
+                  handle={item.user.screen_name}
                 />
               )
             })}
