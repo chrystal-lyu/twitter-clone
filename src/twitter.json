@@ -40,5 +40,47 @@
       "id": 80177620
     },
     "id": 2
+  },
+  {
+    "text": "I was looking for the sample result of Streaming API. I got exactly what I was looking for. Thanks a lot!",
+    "favorited": false,
+    "source": "<a href=\"http://twitter.com/\" rel=\"nofollow\">Twitter for iPhone</a>",
+    "entities": {
+      "user_mentions": [],
+      "urls": ["https://www.youtube.com/watch?v=FJoOGDLdHds"],
+      "hashtags": []
+    },
+    "user": {
+      "profile_image_url": "https://randomuser.me/api/portraits/women/12.jpg",
+      "followers_count": 5325843, 
+      "description": "how are y'all doing?",
+      "verified": true,
+      "location": "San Francisco", 
+      "screen_name": "Monday Today",
+      "handle":"mondayt",
+      "id": 80177620
+    },
+    "id": 3
+  },
+  {
+    "text": "I was looking for the sample result of Streaming API. I got exactly what I was looking for. Thanks a lot!",
+    "favorited": false,
+    "source": "<a href=\"http://twitter.com/\" rel=\"nofollow\">Twitter for iPhone</a>",
+    "entities": {
+      "user_mentions": [],
+      "urls": ["https://www.youtube.com/watch?v=rQfEedl2fLI"],
+      "hashtags": []
+    },
+    "user": {
+      "profile_image_url": "https://randomuser.me/api/portraits/men/12.jpg",
+      "followers_count": 5325843, 
+      "description": "how are y'all doing?",
+      "verified": true,
+      "location": "San Francisco", 
+      "screen_name": "Tuesday Today",
+      "handle":"tuesdayt",
+      "id": 80177620
+    },
+    "id": 4
   }
 ]

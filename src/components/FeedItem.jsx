@@ -84,7 +84,8 @@ class FeedItem extends React.Component {
     this.state = {
       title: '',
       description: '',
-      img_src: ''
+      img_src: '',
+      url: ''
     }
   }
 
@@ -106,7 +107,8 @@ class FeedItem extends React.Component {
           this.setState({
             title,
             description,
-            img_src
+            img_src,
+            url: urls[0]
           })
         },
         (error) => {
@@ -125,6 +127,7 @@ class FeedItem extends React.Component {
           img_src={this.state.img_src}
           title={this.state.title}
           description={this.state.description}
+          url={this.state.url}
         />
       )
     }
