@@ -1,16 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { youtube_parser } from '../common/helper.js'
-
 import FeedUrl from './FeedUrl'
 
 const Wrapper = styled.li`
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
-  padding: 0 0 15px 15px;
+  padding: 15px 0 15px 15px;
   border-bottom: 1px solid rgb(56, 68, 77);
+  transition: background-color .2s;
+  transition: all .2s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #182734;
+  }
 `
 const Text = styled.div`
   display: flex;
@@ -169,22 +173,22 @@ class FeedItem extends React.Component {
 
   render () {
     return (
-    <Wrapper>
-      <UserAvatar src={this.props.avatarImg}/>
-      <Text>
-        <Head>
-          <UserName name={this.props.name}/>
-          <UserHandle handle={this.props.handle}/>
-          <Dot>·</Dot>
-          <TimeStamp time={this.props.time}/>
-        </Head>
-        <TweetBody
-          body={this.props.body} 
-          renderFeedUrl={this.renderFeedUrl()}
-          renderMedia={this.renderMedia()}
-        />
-      </Text>
-    </Wrapper>
+      <Wrapper>
+        <UserAvatar src={this.props.avatarImg}/>
+        <Text>
+          <Head>
+            <UserName name={this.props.name}/>
+            <UserHandle handle={this.props.handle}/>
+            <Dot>·</Dot>
+            <TimeStamp time={this.props.time}/>
+          </Head>
+          <TweetBody
+            body={this.props.body} 
+            renderFeedUrl={this.renderFeedUrl()}
+            renderMedia={this.renderMedia()}
+          />
+        </Text>
+      </Wrapper>
     )
   }
 }

@@ -28,6 +28,7 @@ const List = styled.ul`
   flex-direction: column-reverse;
   list-style-type: none;
   padding: 0;
+  margin: 0;
 `
 
 class FeedList extends React.Component {
