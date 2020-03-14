@@ -68,6 +68,10 @@ const TweetMediaContainer = styled.div`
     min-height: 100%
   }
 `
+const Url = styled.a`
+  color: rgb(29,161,242);
+  text-decoration: none;
+`
 
 const UserAvatar = (props) => {
   return (
@@ -105,19 +109,27 @@ const TimeStamp = (props) => {
   )
 }
 
+const EntityUrl = (props) => {
+  return (
+    <div>{props.urls.map((item) => {
+      return (<Url href={item.url} key={item.index}>{item.url}</Url>)
+    })}</div>
+  )
+}
+
 class FeedItem extends React.Component {
   constructor(props) {
     super(props);
     this.renderFeedUrl = this.renderFeedUrl.bind(this);
-    this.state = {
-      title: '',
-      description: '',
-      img_src: '',
-      url: ''
-    }
+    // this.state = {
+    //   title: '',
+    //   description: '',
+    //   img_src: '',
+    //   url: ''
+    // }
   }
 
-  componentDidMount () {
+  // componentDidMount () {
     // let video_id = '';
     // const yt_api_key = process.env.REACT_APP_YOUTUBE_API_KEY;
     // let urls = this.props.entities.urls;
@@ -146,17 +158,18 @@ class FeedItem extends React.Component {
     // } else {
     //   return;
     // }
-  }
+  // }
 
   renderFeedUrl () {
-    if (this.state.title.length > 0) {
+    if (this.props.entities.urls.length > 0) {
       return (
-        <FeedUrl
-          img_src={this.state.img_src}
-          title={this.state.title}
-          description={this.state.description}
-          url={this.state.url}
-        />
+        <EntityUrl urls={this.props.entities.urls}/>
+        // <FeedUrl
+        //   img_src={this.state.img_src}
+        //   title={this.state.title}
+        //   description={this.state.description}
+        //   url={this.state.url}
+        // />
       )
     }
   }
