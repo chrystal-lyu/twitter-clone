@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import FeedUrl from './FeedUrl'
+import FeedAction from './FeedAction'
 
 const Wrapper = styled.li`
   display: flex;
@@ -200,6 +200,7 @@ class FeedItem extends React.Component {
             renderFeedUrl={this.renderFeedUrl()}
             renderMedia={this.renderMedia()}
           />
+          <FeedAction/>
         </Text>
       </Wrapper>
     )
