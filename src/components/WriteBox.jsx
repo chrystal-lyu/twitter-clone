@@ -9,13 +9,7 @@ const Compose = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `
-const Avatar = styled.div`
-  width: 50px;
-  height: 50px;
-  border-radius: 100px;
-  background-color: papayawhip;
-`
-const InputBox = styled.textarea`
+const InputBox = styled.input`
   width: 80%;
   border-color: transparent;
   background-color: transparent;
@@ -50,9 +44,8 @@ class WriteBox extends React.Component {
     return (
       <Wrapper>
         <Compose>
-          <Avatar/>
           <InputBox
-            placeholder = "What's happening?"
+            placeholder = "Search twitter"
             type = "text"
             value = {this.props.value}
             onChange = {this.props.handleChangeValue}
@@ -60,8 +53,8 @@ class WriteBox extends React.Component {
         </Compose>
         <Button
          role="button"
-         onClick= {this.props.handleAddTweet}
-        >Tweet</Button>
+         onClick= {this.props.searchTweet}
+        >Search</Button>
       </Wrapper>
     );
   }

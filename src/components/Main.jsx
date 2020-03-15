@@ -33,7 +33,7 @@ class Main extends React.Component {
       list: []
     }
     this.changeValue = this.changeValue.bind(this);
-    this.addTweet = this.addTweet.bind(this);
+    this.searchTweet = this.searchTweet.bind(this);
   }
 
   componentDidMount () {
@@ -54,22 +54,8 @@ class Main extends React.Component {
     this.setState({ newTweet: value });
   }
 
-  addTweet () {
-    const newTweet = {
-      id: 1 + Math.random(),
-      text: this.state.newTweet,
-      user: {
-        screen_name: 'Naomi Scott',
-        handle: 'naomiscott',
-        profile_image_url: 'https://randomuser.me/api/portraits/men/57.jpg'
-      }
-    }
-    const newList = [...this.state.list];
-    newList.push(newTweet);
-    this.setState({ 
-      list: newList,
-      newTweet: ''
-    });
+  searchTweet () {
+    console.log('clicked')
   }
 
   render () {
@@ -79,7 +65,7 @@ class Main extends React.Component {
         <WriteBox 
           value = {this.state.newTweet}
           handleChangeValue = {this.changeValue} 
-          handleAddTweet = {this.addTweet}
+          searchTweet = {this.searchTweet}
         />
         <Divider/>
         <FeedList data={this.state.list}/>
