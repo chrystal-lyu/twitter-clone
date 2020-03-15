@@ -15,7 +15,7 @@ const InputBox = styled.input`
   background-color: transparent;
   transition: 0.3s all;
   outline: none;
-  padding: 20px;
+  padding: 20px 0;
   font-size: 18px;
   color: white;
 `
