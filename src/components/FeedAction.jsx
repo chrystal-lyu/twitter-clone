@@ -102,7 +102,6 @@ const like = {
 
 class FeedAction extends React.Component {
   render() {
-    console.log(this.props.favCount)
     return (
       <Wrapper>
         <Action><Comment/></Action>
