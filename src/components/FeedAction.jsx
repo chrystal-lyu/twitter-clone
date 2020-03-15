@@ -6,6 +6,7 @@ import  { ReactComponent as ActionRetweet } from '../media/action_retweet.svg';
 import  { ReactComponent as ActionLike } from '../media/action_like.svg';
 import  { ReactComponent as ActionShare } from '../media/action_share.svg';
 import  { ReactComponent as ActionInsight } from '../media/action_insight.svg';
+import { number_to_thousand } from '../common/helper'
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,7 +33,7 @@ const Action = styled.div`
 `
 const Count = styled.span`
   position: absolute;
-  top: 7px;
+  top: 8px;
   left: 37px;
   transition: all .2s;
 
@@ -108,13 +109,13 @@ class FeedAction extends React.Component {
         <ThemeProvider theme={retweet}>
           <Action>
             <Retweet/>
-            <Count>{this.props.trCount}</Count>
+            <Count>{number_to_thousand(this.props.trCount)}</Count>
             </Action>
         </ThemeProvider>
         <ThemeProvider theme={like}>
           <Action>
             <Like/>
-            <Count>{this.props.favCount}</Count>
+            <Count>{number_to_thousand(this.props.favCount)}</Count>
           </Action>
         </ThemeProvider>
         <Action><Share/></Action>
