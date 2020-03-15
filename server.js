@@ -28,7 +28,7 @@ app.get('/tweets', function (req, res, next) {
 
 app.get('/searchtweet', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  const params = { q: req.query.search_query, count: '2' };
+  const params = { q: req.query.search_query, count: '20', result_type: 'popular', lang: 'en' };
   client.get('search/tweets', params, function(error, tweets, response) {
     res.send(tweets.statuses)
   });
