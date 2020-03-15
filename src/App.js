@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components'
 
-import Header from './components/Header';
+// import Header from './components/Header';
 import Main from './components/Main';
-import SideBar from './components/SideBar';
+// import SideBar from './components/SideBar';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -26,9 +26,9 @@ function App() {
   return (
     <Wrapper>
       <GlobalStyle/>
-      <Header/>
+      {/* <Header/> */}
       <Main/>
-      <SideBar/>
+      {/* <SideBar/> */}
     </Wrapper>
   );
 }
