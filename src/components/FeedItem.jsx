@@ -121,55 +121,12 @@ class FeedItem extends React.Component {
   constructor(props) {
     super(props);
     this.renderFeedUrl = this.renderFeedUrl.bind(this);
-    // this.state = {
-    //   title: '',
-    //   description: '',
-    //   img_src: '',
-    //   url: ''
-    // }
   }
-
-  // componentDidMount () {
-    // let video_id = '';
-    // const yt_api_key = process.env.REACT_APP_YOUTUBE_API_KEY;
-    // let urls = this.props.entities.urls;
-    // if (urls.length > 0) {
-    //   video_id = youtube_parser(urls[0]);
-    //   const endpoint = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + video_id + '&key=' + yt_api_key;
-    //   fetch(endpoint)
-    //   .then((res) => res.json())
-    //   .then(
-    //     (data) => {
-    //       let response = data.items[0].snippet;
-    //       let title = response.title;
-    //       let description = response.description;
-    //       let img_src = response.thumbnails.standard.url;
-    //       this.setState({
-    //         title,
-    //         description,
-    //         img_src,
-    //         url: urls[0]
-    //       })
-    //     },
-    //     (error) => {
-    //       console.log('error')
-    //     }
-    //   )
-    // } else {
-    //   return;
-    // }
-  // }
 
   renderFeedUrl () {
     if (this.props.entities.urls.length > 0) {
       return (
         <EntityUrl  urls={this.props.entities.urls}/>
-        // <FeedUrl
-        //   img_src={this.state.img_src}
-        //   title={this.state.title}
-        //   description={this.state.description}
-        //   url={this.state.url}
-        // />
       )
     }
   }
@@ -185,7 +142,6 @@ class FeedItem extends React.Component {
   }
 
   render () {
-    console.log(this.props.body, this.props.handle, this.props.retweet_status)
     return (
       <Wrapper>
         <UserAvatar src={this.props.avatarImg}/>
