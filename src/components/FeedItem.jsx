@@ -111,8 +111,8 @@ const TimeStamp = (props) => {
 
 const EntityUrl = (props) => {
   return (
-    <div>{props.urls.map((item) => {
-      return (<Url href={item.url} key={item.index}>{item.url}</Url>)
+    <div>{props.urls.map((item, i) => {
+      return (<Url href={item.url} key={i}>{item.url}</Url>)
     })}</div>
   )
 }
@@ -163,7 +163,7 @@ class FeedItem extends React.Component {
   renderFeedUrl () {
     if (this.props.entities.urls.length > 0) {
       return (
-        <EntityUrl urls={this.props.entities.urls}/>
+        <EntityUrl  urls={this.props.entities.urls}/>
         // <FeedUrl
         //   img_src={this.state.img_src}
         //   title={this.state.title}
@@ -185,6 +185,7 @@ class FeedItem extends React.Component {
   }
 
   render () {
+    console.log(this.props.body, this.props.handle, this.props.retweet_status)
     return (
       <Wrapper>
         <UserAvatar src={this.props.avatarImg}/>
