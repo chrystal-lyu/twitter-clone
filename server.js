@@ -12,8 +12,6 @@ const client = new Twitter ({
   access_token_secret: process.env.REACT_APP_TWITTER_ACCESS_TOKEN_SECRET
 })
 
-console.log(process.env)
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function (req, res) {

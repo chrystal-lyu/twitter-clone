@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
 import WriteBox from './WriteBox';
 import FeedList from './FeedList';
-
-import json from '../twitter.json'
 
 const Wrapper = styled.div `
   border-right: 1px solid rgb(56, 68, 77);
@@ -29,7 +28,7 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newTweet: '',
+      searchValue: '',
       list: []
     }
     this.changeValue = this.changeValue.bind(this);
@@ -42,7 +41,6 @@ class Main extends React.Component {
       return res.json()
     })
     .then((data) => {
-      console.log(data)
       this.setState({
         list: data
       });
@@ -51,11 +49,11 @@ class Main extends React.Component {
 
   changeValue (e) {
     const { value } = e.target;
-    this.setState({ newTweet: value });
+    this.setState({ searchValue: value });
   }
 
   searchTweet () {
-    console.log('clicked')
+    console.log('clicked', this.state.searchValue)
   }
 
   render () {
@@ -63,7 +61,7 @@ class Main extends React.Component {
       <Wrapper>
         <Home>Home</Home>
         <WriteBox 
-          value = {this.state.newTweet}
+          value = {this.state.searchValue}
           handleChangeValue = {this.changeValue} 
           searchTweet = {this.searchTweet}
         />
