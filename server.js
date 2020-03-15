@@ -47,4 +47,4 @@ app.get('/searchtweet', function(req, res, next) {
 const port = process.env.PORT || 8080;
 app.listen(port);
 
-console.log(`Password generator listening on ${port}`);
+console.log(`App listening on ${port}`);
