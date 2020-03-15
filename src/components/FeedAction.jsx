@@ -14,19 +14,30 @@ const Wrapper = styled.div`
   margin-top: 5px;
 `
 
-const Action = styled.span`
+const Action = styled.div`
   border-radius: 35px;
   width:35px;
   height:35px;
   text-align: center;
   justify-content: center;
   display: flex;
-  transition: background-color .2s;
   transition: all .2s;
   cursor: pointer;
+  position: relative;
+  color: rgb(136, 153, 166);
 
   &:hover {
-    background-color: ${props => props.theme.main}
+    background-color: ${props => props.theme.background}
+  }
+`
+const Count = styled.span`
+  position: absolute;
+  top: 7px;
+  left: 37px;
+  transition: all .2s;
+
+  ${Action}:hover & {
+    color: ${props => props.theme.main}
   }
 `
 
@@ -73,25 +84,39 @@ const Insight = styled(ActionInsight) `
 `
 Action.defaultProps = {
   theme: {
-    main: 'rgba(29, 161, 242, .1)'
+    main: 'rgb(29, 161, 242)',
+    background: 'rgba(29, 161, 242, .1)'
   }
 }
 
 const retweet = {
-  main: 'rgba(23, 191, 99, .1)'
+  main: 'rgb(23, 191, 99)',
+  background: 'rgba(23, 191, 99, .1)'
 }
 
 const like = {
-  main: 'rgba(224, 36, 94, .1)'
+  main: 'rgb(224, 36, 94)',
+  background: 'rgba(224, 36, 94, .1)'
 }
 
 class FeedAction extends React.Component {
   render() {
+    console.log(this.props.favCount)
     return (
       <Wrapper>
         <Action><Comment/></Action>
-        <ThemeProvider theme={retweet}><Action><Retweet/></Action></ThemeProvider>
-        <ThemeProvider theme={like}><Action><Like/></Action></ThemeProvider>
+        <ThemeProvider theme={retweet}>
+          <Action>
+            <Retweet/>
+            <Count>{this.props.trCount}</Count>
+            </Action>
+        </ThemeProvider>
+        <ThemeProvider theme={like}>
+          <Action>
+            <Like/>
+            <Count>{this.props.favCount}</Count>
+          </Action>
+        </ThemeProvider>
         <Action><Share/></Action>
         <Action><Insight/></Action>
       </Wrapper>

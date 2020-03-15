@@ -157,7 +157,10 @@ class FeedItem extends React.Component {
             renderFeedUrl={this.renderFeedUrl()}
             renderMedia={this.renderMedia()}
           />
-          <FeedAction/>
+          <FeedAction
+            favCount={this.props.favCount}
+            trCount={this.props.trCount}
+          />
         </Text>
       </Wrapper>
     )

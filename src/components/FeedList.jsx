@@ -53,6 +53,8 @@ class FeedList extends React.Component {
                   name={item.user.name}
                   handle={item.user.screen_name}
                   time={item.created_at}
+                  favCount={item.favorite_count}
+                  trCount={item.retweet_count}
                 />
               )
             })}
