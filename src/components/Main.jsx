@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import axios from 'axios';
 
 import WriteBox from './WriteBox';
 import FeedList from './FeedList';
@@ -53,7 +53,17 @@ class Main extends React.Component {
   }
 
   searchTweet () {
-    console.log('clicked', this.state.searchValue)
+    const search_query = this.state.searchValue;
+    axios.get('/searchtweet', { params: {search_query: search_query} })
+    .then(res => {
+      this.setState({
+        list: res.data,
+        searchValue: ''
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
   render () {

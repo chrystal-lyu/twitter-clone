@@ -26,6 +26,14 @@ app.get('/tweets', function (req, res, next) {
   });
 })
 
+app.get('/searchtweet', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  const params = { q: req.query.search_query, count: '2' };
+  client.get('search/tweets', params, function(error, tweets, response) {
+    res.send(tweets.statuses)
+  });
+})
+
 // app.listen(process.env.PORT || 8080);
 app.listen(8080, function () {
   console.log('Web listening on port 8080!')
