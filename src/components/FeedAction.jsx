@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 import  { ReactComponent as ActionComment } from '../media/action_comment.svg';
 import  { ReactComponent as ActionRetweet } from '../media/action_retweet.svg';
@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 15px;
+  margin-top: 5px;
 `
 
 const Action = styled.span`
@@ -26,7 +26,7 @@ const Action = styled.span`
   cursor: pointer;
 
   &:hover {
-    background-color: rgba(29, 161, 242, .1);
+    background-color: ${props => props.theme.main}
   }
 `
 
@@ -42,27 +42,56 @@ const Comment = styled(ActionComment) `
 const Retweet = styled(ActionRetweet) `
   fill: rgb(136, 153, 166);
   width: 18px;
+
+  ${Action}:hover & {
+    fill: rgb(23, 191, 99);
+  }
 `
 const Like = styled(ActionLike) `
   fill: rgb(136, 153, 166);
   width: 18px;
+
+  ${Action}:hover & {
+    fill: rgb(224, 36, 94);
+  }
 `
 const Share = styled(ActionShare) `
   fill: rgb(136, 153, 166);
   width: 18px;
+
+  ${Action}:hover & {
+    fill: rgb(29, 161, 242)
+  }
 `
 const Insight = styled(ActionInsight) `
   fill: rgb(136, 153, 166);
   width: 18px;
+
+  ${Action}:hover & {
+    fill: rgb(29, 161, 242)
+  }
 `
+Action.defaultProps = {
+  theme: {
+    main: 'rgba(29, 161, 242, .1)'
+  }
+}
+
+const retweet = {
+  main: 'rgba(23, 191, 99, .1)'
+}
+
+const like = {
+  main: 'rgba(224, 36, 94, .1)'
+}
 
 class FeedAction extends React.Component {
   render() {
     return (
       <Wrapper>
         <Action><Comment/></Action>
-        <Action><Retweet/></Action>
-        <Action><Like/></Action>
+        <ThemeProvider theme={retweet}><Action><Retweet/></Action></ThemeProvider>
+        <ThemeProvider theme={like}><Action><Like/></Action></ThemeProvider>
         <Action><Share/></Action>
         <Action><Insight/></Action>
       </Wrapper>

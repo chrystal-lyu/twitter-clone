@@ -6,7 +6,7 @@ import FeedAction from './FeedAction'
 const Wrapper = styled.li`
   display: flex;
   flex-direction: row;
-  padding: 15px 0 15px 15px;
+  padding: 15px 0 2px 15px;
   border-bottom: 1px solid rgb(56, 68, 77);
   transition: background-color .2s;
   transition: all .2s;
