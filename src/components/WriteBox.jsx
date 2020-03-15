@@ -23,15 +23,24 @@ const Button = styled.button`
   color: white;
   font-size: 16px;
   font-weight: 600;
-  width: 65px;
+  width: 90px;
   padding: 10px;
   margin: 10px 0 0 auto;
   border: none;
   border-radius: 99px;
   display: flex;
   justify-content: center;
-
+  cursor: pointer;
   background-color: ${props => props.theme.main};
+
+  &:focus {
+    outline: 0;
+  }
+  &:disabled{
+    opacity: 0.5;
+    cursor: auto;
+  }
+
 `
 Button.defaultProps = {
   theme: {
@@ -54,6 +63,7 @@ class WriteBox extends React.Component {
         <Button
          role="button"
          onClick= {this.props.searchTweet}
+         disabled = {this.props.value.length > 0 ? false : true}
         >Search</Button>
       </Wrapper>
     );
