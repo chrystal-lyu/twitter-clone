@@ -54,7 +54,7 @@ class WriteBox extends React.Component {
       <Wrapper>
         <Compose>
           <InputBox
-            placeholder = "Search twitter"
+            placeholder = "Keyword search for the most popular 20 tweets"
             type = "text"
             value = {this.props.value}
             onChange = {this.props.handleChangeValue}
