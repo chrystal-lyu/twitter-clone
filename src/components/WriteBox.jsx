@@ -10,12 +10,12 @@ const Compose = styled.div`
   justify-content: space-between;
 `
 const InputBox = styled.input`
-  width: 80%;
+  width: 100%;
   border-color: transparent;
   background-color: transparent;
   transition: 0.3s all;
   outline: none;
-  padding: 20px 0;
+  padding: 10px 0;
   font-size: 18px;
   color: white;
 `
