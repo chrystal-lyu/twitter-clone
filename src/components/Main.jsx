@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import WriteBox from './WriteBox';
 import FeedList from './FeedList';
 
-import json from '../twitter.json'
-
 const Wrapper = styled.div `
   border-right: 1px solid rgb(56, 68, 77);
   border-left: 1px solid rgb(56, 68, 77);
@@ -33,7 +31,6 @@ class Main extends React.Component {
       list: []
     }
     this.changeValue = this.changeValue.bind(this);
-    this.addTweet = this.addTweet.bind(this);
   }
 
   componentDidMount () {
@@ -42,7 +39,6 @@ class Main extends React.Component {
       return res.json()
     })
     .then((data) => {
-      console.log(data)
       this.setState({
         list: data
       });
@@ -54,24 +50,6 @@ class Main extends React.Component {
     this.setState({ newTweet: value });
   }
 
-  addTweet () {
-    const newTweet = {
-      id: 1 + Math.random(),
-      text: this.state.newTweet,
-      user: {
-        screen_name: 'Naomi Scott',
-        handle: 'naomiscott',
-        profile_image_url: 'https://randomuser.me/api/portraits/men/57.jpg'
-      }
-    }
-    const newList = [...this.state.list];
-    newList.push(newTweet);
-    this.setState({ 
-      list: newList,
-      newTweet: ''
-    });
-  }
-
   render () {
     return (
       <Wrapper>
@@ -79,7 +57,6 @@ class Main extends React.Component {
         <WriteBox 
           value = {this.state.newTweet}
           handleChangeValue = {this.changeValue} 
-          handleAddTweet = {this.addTweet}
         />
         <Divider/>
         <FeedList data={this.state.list}/>

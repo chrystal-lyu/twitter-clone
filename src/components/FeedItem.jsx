@@ -185,7 +185,6 @@ class FeedItem extends React.Component {
   }
 
   render () {
-    console.log(this.props.body, this.props.handle, this.props.retweet_status)
     return (
       <Wrapper>
         <UserAvatar src={this.props.avatarImg}/>

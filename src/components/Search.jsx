@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import sentences from '../sentences.json'
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -54,36 +52,14 @@ const SearchResult = styled.div`
 class Search extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handleChange = this.handleChange.bind(this);
-
     this.state = {
       searchValue: '',
       searchResult: []
     }
   }
 
-  componentDidMount() {
-    this.setState({
-      searchResult: sentences
-    })
-  }
-
-  handleChange (e) {
-    const target = e.target.value;
-    let filteredResult = [];
-    filteredResult = sentences.filter((item) => {
-      let text = item.data.toLowerCase();
-      return text.indexOf(target.toLowerCase()) > -1;
-    })
-    this.setState({
-      searchValue: target,
-      searchResult: filteredResult
-    })
-  }
-
   render() {
-    const { searchValue, searchResult} = this.state;
+    const { searchResult } = this.state;
     return (
       <Wrapper>
         <SearchBoxContainer>
@@ -91,8 +67,6 @@ class Search extends React.Component {
             name = 'text'
             type = 'text'
             placeholder = 'Search'
-            value = {searchValue}
-            onChange = {this.handleChange}
           />
         </SearchBoxContainer>
         <SearchResult>

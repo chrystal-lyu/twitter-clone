@@ -54,13 +54,10 @@ class WriteBox extends React.Component {
           <InputBox
             placeholder = "What's happening?"
             type = "text"
-            value = {this.props.value}
-            onChange = {this.props.handleChangeValue}
           />
         </Compose>
         <Button
          role="button"
-         onClick= {this.props.handleAddTweet}
         >Tweet</Button>
       </Wrapper>
     );
