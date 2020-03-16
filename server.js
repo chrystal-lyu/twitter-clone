@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
 
 app.get('/tweets', function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  const params = { q: 'coronavirus', count: '20' };
+  const params = { q: 'coronavirus', count: '20', result_type: "popular", lang: "en" };
   client.get('search/tweets', params, function(error, tweets, response) {
     res.send(tweets.statuses)
   });
