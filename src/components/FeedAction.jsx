@@ -101,7 +101,7 @@ class FeedAction extends React.Component {
         <ThemeProvider theme={retweet}>
           <Action>
             <Retweet/>
-            <Count>{number_to_thousand(this.props.trCount)}</Count>
+            <Count>{number_to_thousand(this.props.rtCount)}</Count>
             </Action>
         </ThemeProvider>
         <ThemeProvider theme={like}>
