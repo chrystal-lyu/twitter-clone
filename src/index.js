@@ -2,13 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
-import Explore from './components/Explore'
 import * as serviceWorker from './serviceWorker';
 
 const routing = (
   <Router>
       <Route exact path='/' component={App}/>
-      <Route path='/explore' component={Explore}/>
+      <Route path='/explore' component={App}/>
   </Router>
 )
 

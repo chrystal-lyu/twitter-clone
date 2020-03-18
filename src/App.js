@@ -1,10 +1,12 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components'
 
 import Header from './components/Header';
 import Main from './components/Main';
 import SideBar from './components/SideBar';
+import Explore from './components/Explore';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -33,7 +35,10 @@ function App() {
     <Wrapper>
       <GlobalStyle/>
       <Header/>
-      <Main/>
+      <Switch>
+        <Route exact path="/" component={Main}/>
+        <Route path="/explore" component={Explore}/>
+      </Switch>
       <SideBar/>
     </Wrapper>
   );

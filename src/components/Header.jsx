@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import  { ReactComponent as AppLogo } from '../media/logo.svg';
 import  { ReactComponent as HomeIconSvg } from '../media/header_home.svg';
@@ -60,7 +61,7 @@ const MenuItemContainer = styled.div`
     color: rgb(29, 161, 242);
   }
 `
-const MenuItem = styled.a `
+const MenuItem = styled(Link) `
   text-decoration: none;
   color: white;
   font-size: 20px;
@@ -79,11 +80,11 @@ function Header () {
         </MenuItemContainer>
         <MenuItemContainer>
           <HomeIcon/>
-          <MenuItem href="/">Home</MenuItem>
+          <MenuItem to='/'>Home</MenuItem>
         </MenuItemContainer>
         <MenuItemContainer>
           <ExploreIcon/>
-          <MenuItem href="/">Explore</MenuItem>
+          <MenuItem to='/explore'>Explore</MenuItem>
         </MenuItemContainer>
         <MenuItemContainer>
           <NotifIcon/>
