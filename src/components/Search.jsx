@@ -69,15 +69,19 @@ class Search extends React.Component {
             placeholder = 'Search'
           />
         </SearchBoxContainer>
-        <SearchResult>
-          <ul>
-            {searchResult.map((item) => {
-              return (
-                <li key={item.id}>{item.data}</li>
-              )
-            })}
-          </ul>
-        </SearchResult>
+        {
+          searchResult.length > 0 ?
+            <SearchResult>
+              <ul>
+                {searchResult.map((item) => {
+                  return (
+                    <li key={item.id}>{item.data}</li>
+                  )
+                })}
+              </ul>
+            </SearchResult> :
+            null
+        }
       </Wrapper>
     )
   }
