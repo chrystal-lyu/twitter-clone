@@ -5,12 +5,12 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-`
-const SearchBoxContainer = styled.div`
   position: sticky;
   top: 0;
+`
+const SearchBoxContainer = styled.div`
   background-color: #15202A;
-  padding: 10px 0 10px 40px;
+  padding: 6px 0 6px 40px;
 `
 const SearchBox = styled.input`
   padding: 10px 15px;
