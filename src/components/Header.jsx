@@ -76,7 +76,7 @@ function Header () {
       <MenuList>
         <MenuItemContainer>
           <Icon/>
-          <MenuItem href="/"></MenuItem>
+          <MenuItem to='/'></MenuItem>
         </MenuItemContainer>
         <MenuItemContainer>
           <HomeIcon/>
@@ -88,27 +88,27 @@ function Header () {
         </MenuItemContainer>
         <MenuItemContainer>
           <NotifIcon/>
-          <MenuItem href="/">Notifications</MenuItem>
+          <MenuItem to='/'>Notifications</MenuItem>
         </MenuItemContainer>
         <MenuItemContainer>
           <MessageIcon/>
-          <MenuItem href="/">Messages</MenuItem>
+          <MenuItem to='/'>Messages</MenuItem>
         </MenuItemContainer>
         <MenuItemContainer>
           <BookmarkIcon/>
-          <MenuItem href="/">Bookmarks</MenuItem>
+          <MenuItem to='/'>Bookmarks</MenuItem>
         </MenuItemContainer>
         <MenuItemContainer>
           <ListsIcon/>
-          <MenuItem href="/">Lists</MenuItem>
+          <MenuItem to='/'>Lists</MenuItem>
         </MenuItemContainer>
         <MenuItemContainer>
           <ListsIcon/>
-          <MenuItem href="/">Profile</MenuItem>
+          <MenuItem to='/'>Profile</MenuItem>
         </MenuItemContainer>
         <MenuItemContainer>
           <MoreIcon/>
-          <MenuItem href="/">More</MenuItem>
+          <MenuItem to='/'>More</MenuItem>
         </MenuItemContainer>
       </MenuList>
     </Wrapper>
