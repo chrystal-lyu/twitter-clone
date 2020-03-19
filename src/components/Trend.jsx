@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { number_to_thousand } from '../common/helper.js'
 import Loader from './Loader';
+import { number_to_thousand } from '../common/helper.js'
 
 const Wrapper = styled.ul`
   margin: 0 0 0 40px;
@@ -42,9 +42,14 @@ const TrendName = styled.div`
 const TrendTweet = styled.div`
   color: rgb(136, 153, 166);
 `
+
+const defaultProps = {
+  trends: []
+}
 class Trend extends React.Component {
   render () {
-    if (this.props.trends.length === 0) {
+    const { trends } = this.props;
+    if (trends.length === 0) {
       return (
         <LoaderWrapper>
           <Loader isLoading />
@@ -54,7 +59,7 @@ class Trend extends React.Component {
       return (
         <Wrapper>
           <SectonTitle>Trends for you</SectonTitle>
-          {this.props.trends.map((trend, index) => {
+          {trends.map((trend, index) => {
             return (
               <TrendItem key={index} onClick={() => console.log('clicked', `${trend.query}`)}>
                 <TrendPlace>Trending in San Francisco</TrendPlace>
@@ -69,5 +74,7 @@ class Trend extends React.Component {
 
   }
 }
+
+Trend.defaultProps = defaultProps;
 
 export default Trend;
