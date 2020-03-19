@@ -22,7 +22,7 @@ class FeedList extends React.Component {
     if (this.props.data.length === 0) {
       return (
         <LoaderWrapper>
-            <Loader/>
+            <Loader isLoading />
         </LoaderWrapper>
       )
     } else {

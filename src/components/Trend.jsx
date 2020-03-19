@@ -47,7 +47,7 @@ class Trend extends React.Component {
     if (this.props.trends.length === 0) {
       return (
         <LoaderWrapper>
-          <Loader/>
+          <Loader isLoading />
        </LoaderWrapper>
       )
     } else {

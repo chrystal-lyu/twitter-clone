@@ -16,13 +16,17 @@ const Element = styled.div`
     100% { transform: rotate(360deg); }
   }
 `
-
-class Loader extends React.Component {
-  render() {
-    return (
-      <Element/>
-    )
-  }
+const defaultProps = {
+  children: null
 }
+
+const Loader = ({children, isLoading}) => {
+  if (isLoading) {
+    return <Element/>
+  }
+  return children
+}
+
+Loader.defaultProps = defaultProps;
 
 export default Loader;
