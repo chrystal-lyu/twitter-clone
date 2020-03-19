@@ -28,6 +28,14 @@ app.get('/tweets', function (req, res, next) {
   });
 })
 
+app.get('/trends', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  const params = { id: '2487956' };
+  client.get('trends/place', params, function(error, tweets, response) {
+    res.send(tweets[0].trends)
+  })
+})
+
 app.listen(port, function () {
   console.log(`App listening on port ${port}!`)
 })
