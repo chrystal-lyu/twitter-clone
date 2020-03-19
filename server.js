@@ -22,20 +22,37 @@ app.get('/', function (req, res) {
 
 app.get('/tweets', function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  const params = { q: 'coronavirus', count: '20', result_type: "popular", lang: "en" };
+  const params = { 
+    q: 'coronavirus', 
+    count: '20', 
+    result_type: "popular", 
+    lang: "en" 
+  };
   client.get('search/tweets', params, function(error, tweets, response) {
-    res.send(tweets.statuses)
+    res.send(tweets.statuses);
   });
-})
+});
 
 app.get('/trends', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   const params = { id: '2487956' };
   client.get('trends/place', params, function(error, tweets, response) {
-    res.send(tweets[0].trends)
-  })
-})
+    res.send(tweets[0].trends);
+  });
+});
+
+app.get('/search', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  const params = { 
+    q: req.query.search_query,
+    count: '50',
+    result_type: 'popular'
+  };
+  client.get('seach/tweets', params, function(error, tweets, response) {
+    res.send(tweets.statuses);
+  });
+});
 
 app.listen(port, function () {
   console.log(`App listening on port ${port}!`)
-})
+});
