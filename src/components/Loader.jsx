@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Element = styled.div`
-  border: 10px solid #f3f3f3;
+  border: 5px solid rgba(29,161,242,.1);
   border-radius: 50%;
-  border-top: 10px solid rgb(29,161,242);
-  width: 20px;
-  height: 20px;
+  border-top: 5px solid rgb(29,161,242);
+  width: 15px;
+  height: 15px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
+  animation: spin 1s linear infinite;
   margin: 0 auto;
 
   @keyframes spin {
