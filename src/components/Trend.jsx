@@ -2,10 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { number_to_thousand } from '../common/helper.js'
+import Loader from './Loader';
 
 const Wrapper = styled.ul`
   margin: 0 0 0 40px;
   padding: 0;
+`
+const LoaderWrapper = styled.div`
+  background-color: #182734;
+  padding: 15px;
+  margin: 10px 0 0 40px;
+  justify-content: center;
+  border-radius: 20px;
 `
 const SectonTitle = styled.div`
   padding: 10px 15px;
@@ -36,20 +44,29 @@ const TrendTweet = styled.div`
 `
 class Trend extends React.Component {
   render () {
-    return (
-      <Wrapper>
-        <SectonTitle>Trends for you</SectonTitle>
-        {this.props.trends.map((trend, index) => {
-          return (
-            <TrendItem key={index} onClick={() => console.log('clicked', `${trend.query}`)}>
-              <TrendPlace>Trending in San Francisco</TrendPlace>
-              <TrendName>{trend.name}</TrendName>
-              {trend.tweet_volume ? <TrendTweet>{number_to_thousand(trend.tweet_volume)} Tweets</TrendTweet> : null}
-            </TrendItem>
-          )
-        })}
-      </Wrapper>
-    )
+    if (this.props.trends.length === 0) {
+      return (
+        <LoaderWrapper>
+          <Loader/>
+       </LoaderWrapper>
+      )
+    } else {
+      return (
+        <Wrapper>
+          <SectonTitle>Trends for you</SectonTitle>
+          {this.props.trends.map((trend, index) => {
+            return (
+              <TrendItem key={index} onClick={() => console.log('clicked', `${trend.query}`)}>
+                <TrendPlace>Trending in San Francisco</TrendPlace>
+                <TrendName>{trend.name}</TrendName>
+                {trend.tweet_volume ? <TrendTweet>{number_to_thousand(trend.tweet_volume)} Tweets</TrendTweet> : null}
+              </TrendItem>
+            )
+          })}
+        </Wrapper>
+      )      
+    }
+
   }
 }
 
