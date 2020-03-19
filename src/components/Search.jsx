@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -59,7 +60,11 @@ class Search extends React.Component {
   }
 
   render() {
+    const { location } = this.props;
     const { searchResult } = this.state;
+    if (location.pathname.match('/explore')) {
+      return null
+    }
     return (
       <Wrapper>
         <SearchBoxContainer>
@@ -87,4 +92,4 @@ class Search extends React.Component {
   }
 }
 
-export default Search;
+export default withRouter(Search);
