@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import WriteBox from './WriteBox';
+// import WriteBox from './WriteBox';
 import FeedList from './FeedList';
 
 const Wrapper = styled.div `
@@ -54,10 +54,10 @@ class Main extends React.Component {
     return (
       <Wrapper>
         <Home>Home</Home>
-        <WriteBox 
+        {/* <WriteBox 
           value = {this.state.newTweet}
           handleChangeValue = {this.changeValue} 
-        />
+        /> */}
         <Divider/>
         <FeedList data={this.state.list}/>
       </Wrapper>
