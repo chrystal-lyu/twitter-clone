@@ -8,13 +8,33 @@ const Wrapper = styled.div `
   width: 350px;
 `
 
-function SideBar () {
-  return (
-    <Wrapper>
-      <Search/>
-      <Trend/>
-    </Wrapper>
-  );
+class SideBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      trends: []
+    }
+  }
+  componentDidMount () {
+    fetch('/trends')
+    .then(res => {
+      return res.json()
+    })
+    .then((data) => {
+      this.setState({
+        trends: data
+      })
+    })
+  }
+  render () {
+    const { trends } = this.state;
+    return (
+      <Wrapper>
+        <Search/>
+        <Trend trends={trends}/>
+      </Wrapper>
+    );
+  }
 }
 
 export default SideBar;
