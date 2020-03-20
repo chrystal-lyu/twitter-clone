@@ -44,9 +44,10 @@ const MenuItem = styled(Link) `
   text-decoration: none;
   color: white;
   font-size: 18px;
+  line-height: 25px;
   font-weight: bold;
   width: fit-content;
-  margin-left: 20px;
+  margin-left: 15px;
   margin-right: 15px;
   transition: all .2s;
 
