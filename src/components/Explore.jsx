@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios'; 
 
@@ -48,10 +49,6 @@ const SearchResult = styled.div`
     padding: 0;
     margin: 0;
     list-style-type: none;
-
-    li {
-      margin-top: 10px;
-    }
   }
 `
 const Message = styled.div`
@@ -66,6 +63,7 @@ class Explore extends React.Component {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.fetchResult = this.fetchResult.bind(this);
 
     this.state = {
@@ -73,7 +71,6 @@ class Explore extends React.Component {
       searchResult: []
     }
   }
-
   fetchResult() {
     const { searchValue } = this.state;
     const query = searchValue;
@@ -86,20 +83,38 @@ class Explore extends React.Component {
     })
   }
 
+  componentDidMount () {
+    let search = new URLSearchParams(this.props.location.search);
+    let name = search.get("search_query");
+    if (name && name.length > 1) {
+      this.setState ({
+        searchValue: name
+      }, () => {
+        this.fetchResult()
+      })
+    }   
+  }
+
   handleChange(e) {
     const { value } = e.target;
     this.setState({ 
       searchValue: value
-    }, () => {
-      const { searchValue } = this.state;
-      if (searchValue && searchValue.length > 1) {
-        this.fetchResult();
-      } else {
-        this.setState({
-          searchResult: ''
-        })
-      }
     });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const { history } = this.props;
+    const { searchValue } = this.state;
+    history.push({
+      pathname: '/search',
+      search: '?search_query=' + searchValue
+    })
+    this.setState ({
+      searchValue: searchValue
+    }, () => {
+      this.fetchResult()
+    })
   }
 
   render () {
@@ -108,18 +123,19 @@ class Explore extends React.Component {
       <Wrapper>
         <SearchWrapper>
           <SearchBoxContainer>
-            <SearchBox
-              name = 'text'
-              type = 'text'
-              placeholder = 'Search'
-              value = {searchValue}
-              onChange = {this.handleChange}
-            />
+            <form onSubmit={this.handleSubmit}>
+              <SearchBox
+                name = 'text'
+                type = 'text'
+                placeholder = 'Search'
+                value = {searchValue}
+                onChange = {this.handleChange}
+              />
+            </form>
           </SearchBoxContainer>
           {
             searchResult.length > 0 ?
               <SearchResult>
-                <Message>Showing results for <strong>{searchValue}</strong>:</Message>
                 <ul>
                   {searchResult.map((item) => {
                     return (
@@ -146,4 +162,4 @@ class Explore extends React.Component {
   }
 }
 
-export default Explore;
+export default withRouter(Explore);
