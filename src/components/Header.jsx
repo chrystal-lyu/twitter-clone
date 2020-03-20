@@ -19,42 +19,21 @@ const MenuList = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 10px;
+  margin-top: 5px;
   position: fixed;
   top: 0;
 `
-const Icon = styled(AppLogo) `
-  fill: white;
-`
-const HomeIcon = styled(HomeIconSvg)`
-  fill: white;
-`
-const ExploreIcon = styled(ExploreIconSvg)`
-  fill: white;
-`
-const NotifIcon = styled(NotifIconSvg)`
-  fill: white;
-`
-const MessageIcon = styled(MessageIconSvg)`
-  fill: white;
-`
-const BookmarkIcon = styled(BookmarkIconSvg)`
-  fill: white;
-`
-const ListsIcon = styled(ListsIconSvg)`
-  fill: white;
-`
-const MoreIcon = styled(MoreIconSvg)`
-  fill: white;
-`
 const MenuItemContainer = styled.div`
+  width: fit-content;
   display: flex;
   flex-direction; row;
   justify-content: flex-start;
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 10px 5px;
+  margin-bottom: 5px;
   border-radius: 999px;
   transition: background-color .2s;
   transition: all .2s;
+  cursor: pointer;
 
   &:hover {
     background-color: #20303D;
@@ -64,10 +43,69 @@ const MenuItemContainer = styled.div`
 const MenuItem = styled(Link) `
   text-decoration: none;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   width: fit-content;
   margin-left: 20px;
+  margin-right: 15px;
+  transition: all .2s;
+
+  ${MenuItemContainer}:hover & {
+    color: rgb(29, 161, 242);
+  }
+`
+const Icon = styled(AppLogo) `
+  fill: white;
+  padding: 0 5px;
+`
+const HomeIcon = styled(HomeIconSvg)`
+  fill: white;
+  padding: 0 5px;
+  ${MenuItemContainer}:hover & {
+    fill: rgb(29, 161, 242);
+  }
+`
+const ExploreIcon = styled(ExploreIconSvg)`
+  fill: white;
+  padding: 0 5px;
+  ${MenuItemContainer}:hover & {
+    fill: rgb(29, 161, 242);
+  }
+`
+const NotifIcon = styled(NotifIconSvg)`
+  fill: white;
+  padding: 0 5px;
+  ${MenuItemContainer}:hover & {
+    fill: rgb(29, 161, 242);
+  }
+`
+const MessageIcon = styled(MessageIconSvg)`
+  fill: white;
+  padding: 0 5px;
+  ${MenuItemContainer}:hover & {
+    fill: rgb(29, 161, 242);
+  }
+`
+const BookmarkIcon = styled(BookmarkIconSvg)`
+  fill: white;
+  padding: 0 5px;
+  ${MenuItemContainer}:hover & {
+    fill: rgb(29, 161, 242);
+  }
+`
+const ListsIcon = styled(ListsIconSvg)`
+  fill: white;
+  padding: 0 5px;
+  ${MenuItemContainer}:hover & {
+    fill: rgb(29, 161, 242);
+  }
+`
+const MoreIcon = styled(MoreIconSvg)`
+  fill: white;
+  padding: 0 5px;
+  ${MenuItemContainer}:hover & {
+    fill: rgb(29, 161, 242);
+  }
 `
 
 function Header () {
@@ -76,7 +114,6 @@ function Header () {
       <MenuList>
         <MenuItemContainer>
           <Icon/>
-          <MenuItem to='/'></MenuItem>
         </MenuItemContainer>
         <MenuItemContainer>
           <HomeIcon/>
@@ -103,7 +140,7 @@ function Header () {
           <MenuItem to='/'>Lists</MenuItem>
         </MenuItemContainer>
         <MenuItemContainer>
-          <ListsIcon/>
+          <MoreIcon/>
           <MenuItem to='/'>Profile</MenuItem>
         </MenuItemContainer>
         <MenuItemContainer>
