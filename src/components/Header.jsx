@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import  { ReactComponent as AppLogo } from '../media/logo.svg';
@@ -45,6 +45,7 @@ const MenuItem = styled(Link) `
   color: white;
   font-size: 18px;
   line-height: 25px;
+  text-transform: capitalize;
   font-weight: bold;
   width: fit-content;
   margin-left: 15px;
@@ -59,55 +60,71 @@ const Icon = styled(AppLogo) `
   fill: white;
   padding: 0 5px;
 `
-const HomeIcon = styled(HomeIconSvg)`
-  fill: white;
-  padding: 0 5px;
-  ${MenuItemContainer}:hover & {
-    fill: rgb(29, 161, 242);
+
+const createStyle = () => {
+  let styles = '';
+  for (let i = 0; i < 20; i += 1) {
+     styles += `  
+       fill: white;
+       padding: 0 5px;
+       ${MenuItemContainer}:hover & {
+         fill: rgb(29, 161, 242);
+       }
+     `
   }
-`
-const ExploreIcon = styled(ExploreIconSvg)`
-  fill: white;
-  padding: 0 5px;
-  ${MenuItemContainer}:hover & {
-    fill: rgb(29, 161, 242);
+  return css`${styles}`;
+}
+
+const HomeIcon = styled(HomeIconSvg)`${createStyle()};`
+const ExploreIcon = styled(ExploreIconSvg)`${createStyle()};`
+const NotifIcon = styled(NotifIconSvg)`${createStyle()};`
+const MessageIcon = styled(MessageIconSvg)`${createStyle()};`
+const BookmarkIcon = styled(BookmarkIconSvg)`${createStyle()};`
+const ListsIcon = styled(ListsIconSvg)`${createStyle()};`
+const MoreIcon = styled(MoreIconSvg)`${createStyle()};`
+
+const items = [
+  {
+      route: '/',
+      icon: <HomeIcon />,
+      title: 'Home',
+  },
+  {
+      route: '/explore',
+      icon: <ExploreIcon />,
+      title: 'Explore',
+  },
+  {
+      route: '/notifications',
+      icon: <NotifIcon />,
+      title: 'Notifications',
+  },
+  {
+      route: '/messages',
+      icon: <MessageIcon />,
+      title: 'Messages',
+  },
+  {
+      route: '/bookmarks',
+      icon: <BookmarkIcon />,
+      title: 'Bookmarks',
+  },
+  {
+    route: '/lists',
+    icon: <ListsIcon />,
+    title: 'Lists',
+  },
+  {
+    route: '/profile',
+    icon: <MoreIcon />,
+    title: 'Profile',
+  },
+  {
+    route: '/more',
+    icon: <MoreIcon />,
+    title: 'More',
   }
-`
-const NotifIcon = styled(NotifIconSvg)`
-  fill: white;
-  padding: 0 5px;
-  ${MenuItemContainer}:hover & {
-    fill: rgb(29, 161, 242);
-  }
-`
-const MessageIcon = styled(MessageIconSvg)`
-  fill: white;
-  padding: 0 5px;
-  ${MenuItemContainer}:hover & {
-    fill: rgb(29, 161, 242);
-  }
-`
-const BookmarkIcon = styled(BookmarkIconSvg)`
-  fill: white;
-  padding: 0 5px;
-  ${MenuItemContainer}:hover & {
-    fill: rgb(29, 161, 242);
-  }
-`
-const ListsIcon = styled(ListsIconSvg)`
-  fill: white;
-  padding: 0 5px;
-  ${MenuItemContainer}:hover & {
-    fill: rgb(29, 161, 242);
-  }
-`
-const MoreIcon = styled(MoreIconSvg)`
-  fill: white;
-  padding: 0 5px;
-  ${MenuItemContainer}:hover & {
-    fill: rgb(29, 161, 242);
-  }
-`
+];
 
 function Header () {
   return (
@@ -116,38 +133,16 @@ function Header () {
         <MenuItemContainer>
           <Icon/>
         </MenuItemContainer>
-        <MenuItemContainer>
-          <HomeIcon/>
-          <MenuItem to='/'>Home</MenuItem>
-        </MenuItemContainer>
-        <MenuItemContainer>
-          <ExploreIcon/>
-          <MenuItem to='/explore'>Explore</MenuItem>
-        </MenuItemContainer>
-        <MenuItemContainer>
-          <NotifIcon/>
-          <MenuItem to='/'>Notifications</MenuItem>
-        </MenuItemContainer>
-        <MenuItemContainer>
-          <MessageIcon/>
-          <MenuItem to='/'>Messages</MenuItem>
-        </MenuItemContainer>
-        <MenuItemContainer>
-          <BookmarkIcon/>
-          <MenuItem to='/'>Bookmarks</MenuItem>
-        </MenuItemContainer>
-        <MenuItemContainer>
-          <ListsIcon/>
-          <MenuItem to='/'>Lists</MenuItem>
-        </MenuItemContainer>
-        <MenuItemContainer>
-          <MoreIcon/>
-          <MenuItem to='/'>Profile</MenuItem>
-        </MenuItemContainer>
-        <MenuItemContainer>
-          <MoreIcon/>
-          <MenuItem to='/'>More</MenuItem>
-        </MenuItemContainer>
+        {
+          items.map((item, index) => {
+            return (
+              <MenuItemContainer key={index}>
+                {item.icon}
+                <MenuItem to={item.route}>{item.title}</MenuItem>
+              </MenuItemContainer>
+            )
+          })
+        }
       </MenuList>
     </Wrapper>
   );
