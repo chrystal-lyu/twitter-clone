@@ -130,7 +130,7 @@ function Header () {
   return (
     <Wrapper>
       <MenuList>
-        <MenuItemContainer>
+        <MenuItemContainer to='/'>
           <Icon/>
         </MenuItemContainer>
         {
