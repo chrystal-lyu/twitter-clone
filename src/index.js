@@ -42,6 +42,7 @@ const routing = (
       <Switch>
         <Route exact path="/" component={Main}/>
         <Route path="/explore" component={Explore}/>
+        <Route path="/search" component={Explore}/>
         <Route component={NotFound} />
       </Switch>
       <SideBar/>
