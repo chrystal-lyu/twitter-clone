@@ -23,7 +23,7 @@ const MenuList = styled.div`
   position: fixed;
   top: 0;
 `
-const MenuItemContainer = styled.div`
+const MenuItemContainer = styled(Link)`
   width: fit-content;
   display: flex;
   flex-direction; row;
@@ -31,6 +31,7 @@ const MenuItemContainer = styled.div`
   padding: 10px 5px;
   margin-bottom: 5px;
   border-radius: 999px;
+  text-decoration: none;
   transition: background-color .2s;
   transition: all .2s;
   cursor: pointer;
@@ -40,8 +41,7 @@ const MenuItemContainer = styled.div`
     color: rgb(29, 161, 242);
   }
 `
-const MenuItem = styled(Link) `
-  text-decoration: none;
+const MenuItem = styled.div `
   color: white;
   font-size: 18px;
   line-height: 25px;
@@ -136,9 +136,9 @@ function Header () {
         {
           items.map((item, index) => {
             return (
-              <MenuItemContainer key={index}>
+              <MenuItemContainer key={index} to={item.route}>
                 {item.icon}
-                <MenuItem to={item.route}>{item.title}</MenuItem>
+                <MenuItem>{item.title}</MenuItem>
               </MenuItemContainer>
             )
           })
