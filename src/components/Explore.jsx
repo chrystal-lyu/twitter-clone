@@ -59,6 +59,7 @@ const Message = styled.div`
   line-height: 30px;
   padding: 0 20px;
   margin-top: 20px;
+  text-align: ${props => props.centered ? 'center': ''};
 `
 class Explore extends React.Component {
   constructor(props) {
@@ -90,8 +91,13 @@ class Explore extends React.Component {
     this.setState({ 
       searchValue: value
     }, () => {
-      if (this.state.searchValue && this.state.searchValue.length > 1) {
+      const { searchValue } = this.state;
+      if (searchValue && searchValue.length > 1) {
         this.fetchResult();
+      } else {
+        this.setState({
+          searchResult: ''
+        })
       }
     });
   }
@@ -132,7 +138,7 @@ class Explore extends React.Component {
                   })}
                 </ul>
               </SearchResult> :
-              null
+              <Message centered>Try searching for "coronavirus"</Message>
           }
         </SearchWrapper>
       </Wrapper>
