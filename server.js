@@ -35,7 +35,7 @@ app.get('/tweets', function (req, res, next) {
 
 app.get('/trends', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  const params = { id: '2487956' };
+  const params = { id: '2487956' }; // San Francisco's WOEID
   client.get('trends/place', params, function(error, tweets, response) {
     res.send(tweets[0].trends);
   });
@@ -45,10 +45,10 @@ app.get('/search', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   const params = { 
     q: req.query.search_query,
-    count: '50',
+    count: '20',
     result_type: 'popular'
   };
-  client.get('seach/tweets', params, function(error, tweets, response) {
+  client.get('search/tweets', params, function(error, tweets, response) {
     res.send(tweets.statuses);
   });
 });
