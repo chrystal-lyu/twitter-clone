@@ -17,7 +17,7 @@ export const fetchTrends = () => {
 }
 
 export const fetchResult = (query) => {
-  axios.get('/search', { params: { search_query: query } })
+  return axios.get('/search', { params: { search_query: query } })
   .then(
     response => response.data,
     error => console.log('An error occured', error)
