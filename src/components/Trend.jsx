@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Loader from './Loader';
@@ -31,6 +32,7 @@ const TrendItem = styled.li`
   border-bottom: 1px solid rgb(56, 68, 77);
   padding: 10px 15px;
   line-height: 1.5;
+  cursor: pointer;
 `
 const TrendPlace = styled.div`
   color: rgb(136, 153, 166);
@@ -47,6 +49,21 @@ const defaultProps = {
   trends: []
 }
 class Trend extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.state={};
+  }
+
+  handleClick(query) {
+    console.log('clicked', `${query}`)
+    const { history } = this.props;
+    history.push({
+      pathname: '/search',
+      search: '?search_query=' + query
+    })
+  }
+
   render () {
     const { trends } = this.props;
     if (trends.length === 0) {
@@ -61,7 +78,7 @@ class Trend extends React.Component {
           <SectonTitle>Trends for you</SectonTitle>
           {trends.map((trend, index) => {
             return (
-              <TrendItem key={index} onClick={() => console.log('clicked', `${trend.query}`)}>
+              <TrendItem key={index} onClick={()=>this.handleClick(trend.query)}>
                 <TrendPlace>Trending in San Francisco</TrendPlace>
                 <TrendName>{trend.name}</TrendName>
                 {trend.tweet_volume ? <TrendTweet>{number_to_thousand(trend.tweet_volume)} Tweets</TrendTweet> : null}
@@ -77,4 +94,4 @@ class Trend extends React.Component {
 
 Trend.defaultProps = defaultProps;
 
-export default Trend;
+export default withRouter(Trend);
