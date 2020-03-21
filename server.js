@@ -29,6 +29,9 @@ app.get('/tweets', function (req, res, next) {
     lang: "en" 
   };
   client.get('search/tweets', params, function(error, tweets, response) {
+    if (!tweets) {
+      console.log(error)
+    }
     res.send(tweets.statuses);
   });
 });
@@ -37,6 +40,9 @@ app.get('/trends', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   const params = { id: '2487956' }; // San Francisco's WOEID
   client.get('trends/place', params, function(error, tweets, response) {
+    if (!tweets) {
+      console.log(error)
+    }
     res.send(tweets[0].trends);
   });
 });
@@ -49,6 +55,9 @@ app.get('/search', function(req, res, next) {
     result_type: 'popular'
   };
   client.get('search/tweets', params, function(error, tweets, response) {
+    if (!tweets) {
+      console.log(error)
+    }
     res.send(tweets.statuses);
   });
 });
