@@ -2,14 +2,14 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import  { ReactComponent as AppLogo } from '../media/logo.svg';
-import  { ReactComponent as HomeIconSvg } from '../media/header_home.svg';
-import  { ReactComponent as ExploreIconSvg } from '../media/header_explore.svg';
-import  { ReactComponent as NotifIconSvg } from '../media/header_notification.svg';
-import  { ReactComponent as MessageIconSvg } from '../media/header_message.svg';
-import  { ReactComponent as BookmarkIconSvg } from '../media/header_bookmark.svg';
-import  { ReactComponent as ListsIconSvg } from '../media/header_lists.svg';
-import  { ReactComponent as MoreIconSvg } from '../media/header_more.svg';
+import  { ReactComponent as AppLogo } from '../assets/logo.svg';
+import  { ReactComponent as HomeIconSvg } from '../assets/header_home.svg';
+import  { ReactComponent as ExploreIconSvg } from '../assets/header_explore.svg';
+import  { ReactComponent as NotifIconSvg } from '../assets/header_notification.svg';
+import  { ReactComponent as MessageIconSvg } from '../assets/header_message.svg';
+import  { ReactComponent as BookmarkIconSvg } from '../assets/header_bookmark.svg';
+import  { ReactComponent as ListsIconSvg } from '../assets/header_lists.svg';
+import  { ReactComponent as MoreIconSvg } from '../assets/header_more.svg';
 
 const Wrapper = styled.div `
   position: relative;

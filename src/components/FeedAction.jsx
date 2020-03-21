@@ -1,11 +1,11 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
-import  { ReactComponent as ActionComment } from '../media/action_comment.svg';
-import  { ReactComponent as ActionRetweet } from '../media/action_retweet.svg';
-import  { ReactComponent as ActionLike } from '../media/action_like.svg';
-import  { ReactComponent as ActionShare } from '../media/action_share.svg';
-import  { ReactComponent as ActionInsight } from '../media/action_insight.svg';
+import  { ReactComponent as ActionComment } from '../assets/action_comment.svg';
+import  { ReactComponent as ActionRetweet } from '../assets/action_retweet.svg';
+import  { ReactComponent as ActionLike } from '../assets/action_like.svg';
+import  { ReactComponent as ActionShare } from '../assets/action_share.svg';
+import  { ReactComponent as ActionInsight } from '../assets/action_insight.svg';
 import { number_to_thousand } from '../util'
 
 const Wrapper = styled.div`
