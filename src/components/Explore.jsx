@@ -104,8 +104,10 @@ class Explore extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { history } = this.props;
     const { searchValue } = this.state;
+    const { history } = this.props;
+    this.props.passSearchQuery(searchValue);
+
     history.push({
       pathname: '/search',
       search: '?search_query=' + searchValue

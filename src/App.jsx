@@ -78,11 +78,11 @@ class App extends React.Component {
             />
             <Route 
               path="/explore" 
-              component={Explore} 
+              render={(props) => <Explore {...props} timeline={searchResult} passSearchQuery={this.updateQuery} />}
             />
             <Route 
               path="/search" 
-              render={(props) => <Explore {...props} timeline={searchResult} />}
+              render={(props) => <Explore {...props} timeline={searchResult} passSearchQuery={this.updateQuery} />}
             />
             <Route 
               component={NotFound} 
