@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Loader from './Loader';
-import { number_to_thousand } from '../common/helper.js'
+import { number_to_thousand } from '../util'
 
 const Wrapper = styled.ul`
   margin: 0 0 0 40px;

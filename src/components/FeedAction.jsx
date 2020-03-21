@@ -6,7 +6,7 @@ import  { ReactComponent as ActionRetweet } from '../media/action_retweet.svg';
 import  { ReactComponent as ActionLike } from '../media/action_like.svg';
 import  { ReactComponent as ActionShare } from '../media/action_share.svg';
 import  { ReactComponent as ActionInsight } from '../media/action_insight.svg';
-import { number_to_thousand } from '../common/helper'
+import { number_to_thousand } from '../util'
 
 const Wrapper = styled.div`
   display: flex;
