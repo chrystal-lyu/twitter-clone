@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
-import { fetchTimeline, fetchTrends } from './api'
+import { fetchTimeline, fetchTrends, fetchResult } from './api'
 
 import Header from './components/Header';
 import Main from './components/Main';
@@ -34,9 +34,11 @@ const Wrapper = styled.div `
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.updateQuery = this.updateQuery.bind(this);
     this.state = {
       timeline: [],
-      trends: []
+      trends: [],
+      searchResult: []
     }
   }
   
@@ -53,8 +55,16 @@ class App extends React.Component {
     })
   }
 
+  updateQuery (query) {
+    fetchResult(query).then((data) => {
+      this.setState({
+        searchResult: data
+      })
+    })
+  }
+  
   render() {
-    const { timeline, trends } = this.state;
+    const { timeline, trends, searchResult } = this.state;
     return (
       <Router>
         <Wrapper>
@@ -72,13 +82,13 @@ class App extends React.Component {
             />
             <Route 
               path="/search" 
-              render={(props) => <Explore {...props} />}
+              render={(props) => <Explore {...props} timeline={searchResult} />}
             />
             <Route 
               component={NotFound} 
             />
           </Switch>
-          <SideBar trends={trends} />
+          <SideBar trends={trends} passTrendQuery={this.updateQuery}/>
         </Wrapper>
       </Router>
     )

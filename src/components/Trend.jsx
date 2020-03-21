@@ -56,7 +56,7 @@ class Trend extends React.Component {
   }
 
   handleClick(query) {
-    console.log('clicked', `${query}`)
+    this.props.passClick(query);
     const { history } = this.props;
     history.push({
       pathname: '/search',
@@ -78,7 +78,7 @@ class Trend extends React.Component {
           <SectonTitle>Trends for you</SectonTitle>
           {trends.map((trend, index) => {
             return (
-              <TrendItem key={index} onClick={()=>this.handleClick(trend.query)}>
+              <TrendItem key={index} onClick={() => this.handleClick(trend.query)}>
                 <TrendPlace>Trending in San Francisco</TrendPlace>
                 <TrendName>{trend.name}</TrendName>
                 {trend.tweet_volume ? <TrendTweet>{number_to_thousand(trend.tweet_volume)} Tweets</TrendTweet> : null}

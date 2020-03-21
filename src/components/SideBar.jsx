@@ -8,12 +8,13 @@ const Wrapper = styled.div `
 `
 
 const SideBar = ({
-  trends
+  trends,
+  passTrendQuery
 }) => {
   return (
     <Wrapper>
       <Search/>
-      <Trend trends={trends}/>
+      <Trend trends={trends} passClick={passTrendQuery} />
     </Wrapper>
   );
 }
