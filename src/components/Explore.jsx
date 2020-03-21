@@ -118,7 +118,9 @@ class Explore extends React.Component {
   }
 
   render () {
-    const { searchValue, searchResult } = this.state;
+    const { searchValue } = this.state;
+    const { timeline } = this.props;
+
     return (
       <Wrapper>
         <SearchWrapper>
@@ -134,10 +136,10 @@ class Explore extends React.Component {
             </form>
           </SearchBoxContainer>
           {
-            searchResult.length > 0 ?
+            timeline.length > 0 ?
               <SearchResult>
                 <ul>
-                  {searchResult.map((item) => {
+                  {timeline.map((item) => {
                     return (
                       <FeedItem
                         key={item.id}
