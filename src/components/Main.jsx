@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
-// import WriteBox from './WriteBox';
 import FeedList from './FeedList';
 
 const Wrapper = styled.div `
@@ -23,46 +21,15 @@ const Divider = styled.div`
   background-color: rgb(37, 51, 65);
 `
 
-class Main extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      newTweet: '',
-      list: []
-    }
-    this.changeValue = this.changeValue.bind(this);
-  }
-
-  componentDidMount () {
-    fetch('/tweets')
-    .then(res => {
-      return res.json()
-    })
-    .then((data) => {
-      this.setState({
-        list: data
-      });
-    })
-  }
-
-  changeValue (e) {
-    const { value } = e.target;
-    this.setState({ newTweet: value });
-  }
-
-  render () {
-    return (
-      <Wrapper>
-        <Home>Home</Home>
-        {/* <WriteBox 
-          value = {this.state.newTweet}
-          handleChangeValue = {this.changeValue} 
-        /> */}
-        <Divider/>
-        <FeedList data={this.state.list}/>
-      </Wrapper>
-    );
-  }
-}
-
+const Main = ({
+  timeline
+}) => {
+  return (
+    <Wrapper>
+      <Home>Home</Home>
+      <Divider/>
+      <FeedList data={timeline}/>
+    </Wrapper>
+  );
+};
 export default Main;
