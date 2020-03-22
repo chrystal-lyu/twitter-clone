@@ -20,9 +20,11 @@ const SearchWrapper = styled.div`
 `
 const SearchBoxContainer = styled.div`
   background-color: #15202A;
-  padding: 6px 0;
+  padding: 6px 20px;
   width: 560px;
-  margin: 0 auto;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 `
 const SearchBox = styled.input`
   padding: 10px 15px;
