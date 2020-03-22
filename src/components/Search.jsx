@@ -62,7 +62,7 @@ class Search extends React.Component {
   render() {
     const { location } = this.props;
     const { searchResult } = this.state;
-    if (location.pathname.match('/explore')) {
+    if (location.pathname.match('/explore') || location.pathname.match('/search')) {
       return null
     }
     return (
