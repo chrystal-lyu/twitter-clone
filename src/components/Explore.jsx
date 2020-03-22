@@ -106,6 +106,7 @@ class Explore extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    window.scrollTo(0, 0);
     const { searchValue } = this.state;
     const { history } = this.props;
     this.props.passSearchQuery(searchValue);
