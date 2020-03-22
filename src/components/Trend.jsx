@@ -16,7 +16,7 @@ const LoaderWrapper = styled.div`
   justify-content: center;
   border-radius: 20px;
 `
-const SectonTitle = styled.div`
+const SectionTitle = styled.div`
   padding: 10px 15px;
   margin: 10px 0 0 0;
   border-top-right-radius: 20px;
@@ -26,6 +26,18 @@ const SectonTitle = styled.div`
   font-size: 20px;
   font-weight: 800;
 `
+const ShowMore = styled.div`
+  padding: 15px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: #182734;
+  color: rgb(29, 161, 242);
+  cursor: pointer;
+  transition: all .2s;
+  &:hover {
+    background-color: #243341;
+  }
+`
 const TrendItem = styled.li`
   background-color: #182734;
   list-style: none;
@@ -33,6 +45,10 @@ const TrendItem = styled.li`
   padding: 10px 15px;
   line-height: 1.5;
   cursor: pointer;
+  transition: all .2s;
+  &:hover {
+    background-color: #243341;
+  }
 `
 const TrendPlace = styled.div`
   color: rgb(136, 153, 166);
@@ -52,7 +68,10 @@ class Trend extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
-    this.state={};
+    this.handleShowMore = this.handleShowMore.bind(this);
+    this.state={
+      count: 5
+    };
   }
 
   handleClick(query) {
@@ -64,8 +83,15 @@ class Trend extends React.Component {
     })
   }
 
+  handleShowMore() {
+    this.setState({
+      count: this.state.count+5
+    })
+  }
+
   render () {
     const { trends } = this.props;
+    const { count } = this.state;
     if (trends.length === 0) {
       return (
         <LoaderWrapper>
@@ -75,8 +101,8 @@ class Trend extends React.Component {
     } else {
       return (
         <Wrapper>
-          <SectonTitle>Trends for you</SectonTitle>
-          {trends.map((trend, index) => {
+          <SectionTitle>Trends for you</SectionTitle>
+          {trends.slice(0, count).map((trend, index) => {
             return (
               <TrendItem key={index} onClick={() => this.handleClick(trend.query)}>
                 <TrendPlace>Trending in San Francisco</TrendPlace>
@@ -85,6 +111,7 @@ class Trend extends React.Component {
               </TrendItem>
             )
           })}
+          <ShowMore onClick={this.handleShowMore}>Show more</ShowMore>
         </Wrapper>
       )      
     }
