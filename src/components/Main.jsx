@@ -15,6 +15,7 @@ const Home = styled.div`
   position: sticky;
   top: 0;
   background-color: #15202A;
+  z-index: 1;
 `
 const Divider = styled.div`
   height: 10px;
