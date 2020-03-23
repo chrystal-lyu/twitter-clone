@@ -22,6 +22,8 @@ const MenuList = styled.div`
   margin-top: 5px;
   position: fixed;
   top: 0;
+  height: 100vh;
+  overflow-y: auto;
 `
 const MenuItemContainer = styled(Link)`
   width: fit-content;
