@@ -1,7 +1,10 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
-import { fetchTimeline, fetchTrends, fetchResult } from './api'
+import { 
+  fetchTrends, 
+  fetchResult 
+} from './api'
 
 import Header from './components/Header';
 import Main from './components/Main';
@@ -43,11 +46,6 @@ class App extends React.Component {
   }
   
   componentDidMount () {
-    fetchTimeline().then((data) => {
-      this.setState({
-        timeline: data
-      });
-    });
     fetchTrends().then((data) => {
       this.setState({
         trends: data

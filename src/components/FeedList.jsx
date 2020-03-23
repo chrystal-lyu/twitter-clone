@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { fetchTimeline } from '../redux/actions/operations'
+
 import FeedItem from './FeedItem';
 import Loader from './Loader';
 
@@ -18,8 +21,18 @@ const List = styled.ul`
 `
 
 class FeedList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  componentDidMount() {
+    const {dispatch} = this.props;
+    dispatch(fetchTimeline());
+  }
+
   render () {
-    if (this.props.data.length === 0) {
+    const { timeline } = this.props;
+    if (timeline.length === 0) {
       return (
         <LoaderWrapper>
             <Loader isLoading />
@@ -29,18 +42,18 @@ class FeedList extends React.Component {
       return (
         <Wrapper>
           <List>
-            {this.props.data.map((item) => {
+            {timeline.map((item) => {
               return (
                 <FeedItem
                   key={item.id}
-                  body={item.text}
+                  body={item.body}
                   entities={item.entities}
-                  avatarImg={item.user.profile_image_url}
-                  name={item.user.name}
-                  handle={item.user.screen_name}
-                  time={item.created_at}
-                  favCount={item.favorite_count}
-                  rtCount={item.retweet_count}
+                  avatarImg={item.avatarImg}
+                  name={item.name}
+                  handle={item.handle}
+                  time={item.time}
+                  favCount={item.favCount}
+                  rtCount={item.rtCount}
                 />
               )
             })}
@@ -51,4 +64,11 @@ class FeedList extends React.Component {
   }
 }
 
-export default FeedList;
+
+const mapStateToProps = state => {
+  return { 
+    timeline: state.timelineReducer.timeline 
+  };
+};
+
+export default connect(mapStateToProps)(FeedList);

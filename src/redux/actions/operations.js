@@ -1,20 +1,20 @@
 import axios from 'axios';
 import actions from './actions';
 
-const getTimeline = actions.getTimeline;
+const receiveTimelineJson = actions.receiveTimelineJson;
 
-const fetchTimeline = (timeline) => {
-  return dispatch => {
+export const fetchTimeline = () => {
+	return dispatch => {
     return axios.get('/tweets')
-      .then(response => {
+      .then((response) => {
         const responseData = response.data;
         let data = [];
-        responseData.children.map(child => {
+        responseData.map((child) => {
           const childData = {
             id: child.id,
             body: child.text,
             entities: child.entities,
-            avatarImg: child.avatarImg,
+            avatarImg: child.user.profile_image_url,
             name: child.user.name,
             handle: child.user.screen_name,
             time: child.created_at,
@@ -24,11 +24,10 @@ const fetchTimeline = (timeline) => {
           data.push(childData);
           return null
         })
-        dispatch(getTimeline(responseData)); 
+        dispatch(receiveTimelineJson(data))
       })
+      .catch(error => {
+        throw(error);
+      });
   }
-}
-
-export default {
-  fetchTimeline
 }

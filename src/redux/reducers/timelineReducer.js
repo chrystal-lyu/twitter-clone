@@ -8,12 +8,18 @@ const initialState = {
 
 const timelineReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.FETCH_TIMELINE:
+    case actionTypes.REQUEST_TIMELINE_JSON: {
+      return state;
+    }
+
+    case actionTypes.RECEIVE_TIMELINE_JSON: {
       const { timeline } = action;
       return {
         ...state,
-        timeline 
+        timeline
       };
+    }
+    
     default:
       return state;
   }
