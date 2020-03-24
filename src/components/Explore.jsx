@@ -155,5 +155,5 @@ class Explore extends React.Component {
 const mapStateToProps = state => ({
   searchResult: state.searchReducer.searchResult
 });
-g
+
 export default connect(mapStateToProps)(withRouter(Explore));
