@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import  { ReactComponent as AppLogo } from '../assets/logo.svg';
 import  { ReactComponent as HomeIconSvg } from '../assets/header_home.svg';
@@ -25,7 +25,7 @@ const MenuList = styled.div`
   height: 100vh;
   overflow-y: auto;
 `
-const MenuItemContainer = styled(Link)`
+const MenuItemContainer = styled(NavLink)`
   width: fit-content;
   display: flex;
   flex-direction; row;
@@ -41,6 +41,15 @@ const MenuItemContainer = styled(Link)`
   &:hover {
     background-color: #20303D;
     color: rgb(29, 161, 242);
+  }
+
+  &.active {
+    svg {
+      fill: rgb(29, 161, 242);
+    }
+    div {
+      color: rgb(29, 161, 242);
+    }
   }
 `
 const MenuItem = styled.div `
@@ -132,13 +141,13 @@ function Header () {
   return (
     <Wrapper>
       <MenuList>
-        <MenuItemContainer to='/'>
+        <Link to='/'>
           <Icon/>
-        </MenuItemContainer>
+        </Link>
         {
           items.map((item, index) => {
             return (
-              <MenuItemContainer key={index} to={item.route}>
+              <MenuItemContainer key={index} to={item.route} exact activeClassName="active">
                 {item.icon}
                 <MenuItem>{item.title}</MenuItem>
               </MenuItemContainer>
