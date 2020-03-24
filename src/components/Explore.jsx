@@ -1,7 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchSearchResult } from '../redux/actions/operations'
 import styled from 'styled-components';
-import axios from 'axios'; 
 
 import FeedItem from './FeedItem';
 
@@ -66,23 +67,11 @@ class Explore extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.fetchResult = this.fetchResult.bind(this);
 
     this.state = {
       searchValue: '',
       searchResult: []
     }
-  }
-  fetchResult() {
-    const { searchValue } = this.state;
-    const query = searchValue;
-    axios.get('/search', { params: { search_query: query } })
-    .then(res => {
-      this.setState({ searchResult: res.data })
-    })
-    .catch((error) => {
-      console.log(error)
-    })
   }
 
   componentDidMount () {
@@ -91,8 +80,6 @@ class Explore extends React.Component {
     if (name && name.length > 1) {
       this.setState ({
         searchValue: name
-      }, () => {
-        this.fetchResult()
       })
     }   
   }
@@ -108,24 +95,20 @@ class Explore extends React.Component {
     e.preventDefault();
     window.scrollTo(0, 0);
     const { searchValue } = this.state;
-    const { history } = this.props;
-    this.props.passSearchQuery(searchValue);
-
+    const { history, dispatch } = this.props;
+    dispatch(fetchSearchResult(searchValue));
     history.push({
       pathname: '/search',
       search: '?search_query=' + searchValue
     })
     this.setState ({
       searchValue: searchValue
-    }, () => {
-      this.fetchResult()
     })
   }
 
   render () {
     const { searchValue } = this.state;
-    const { timeline } = this.props;
-
+    const { searchResult } = this.props;
     return (
       <Wrapper>
         <SearchWrapper>
@@ -141,10 +124,10 @@ class Explore extends React.Component {
             </form>
           </SearchBoxContainer>
           {
-            timeline.length > 0 ?
+            searchResult.length > 0 ?
               <SearchResult>
                 <ul>
-                  {timeline.map((item) => {
+                  {searchResult.map((item) => {
                     return (
                       <FeedItem
                         key={item.id}
@@ -169,4 +152,8 @@ class Explore extends React.Component {
   }
 }
 
-export default withRouter(Explore);
+const mapStateToProps = state => ({
+  searchResult: state.timelineReducer.searchResult
+});
+
+export default connect(mapStateToProps)(withRouter(Explore));

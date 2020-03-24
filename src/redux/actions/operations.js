@@ -3,6 +3,7 @@ import actions from './actions';
 
 const receiveTimelineJson = actions.receiveTimelineJson;
 const receiveTrendJson = actions.receiveTrendJson;
+const receiveSearchJson = actions.receiveSearchJson;
 
 export const fetchTimeline = () => {
 	return dispatch => {
@@ -41,6 +42,21 @@ export const fetchTrends = () => {
         dispatch(receiveTrendJson(response.data))
       })
       .catch(error=> {
+        throw(error);
+      })
+  }
+}
+
+export const fetchSearchResult = (query) => {
+  return dispatch => {
+    return axios.get(
+        '/search', 
+        {params: { search_query: query }}
+      )
+      .then(response => {
+        dispatch(receiveSearchJson(response.data))
+      })
+      .catch(error => {
         throw(error);
       })
   }

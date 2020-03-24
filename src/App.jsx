@@ -1,9 +1,6 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
-import { 
-  fetchResult 
-} from './api'
 
 import Header from './components/Header';
 import Main from './components/Main';
@@ -33,27 +30,8 @@ const Wrapper = styled.div `
   justify-content: center;
 `
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.updateQuery = this.updateQuery.bind(this);
-    this.state = {
-      timeline: [],
-      trends: [],
-      searchResult: []
-    }
-  }
-
-  updateQuery (query) {
-    fetchResult(query).then((data) => {
-      this.setState({
-        searchResult: data
-      })
-    })
-  }
-  
+class App extends React.Component {  
   render() {
-    const { timeline, trends, searchResult } = this.state;
     return (
       <Router>
         <Wrapper>
@@ -63,21 +41,21 @@ class App extends React.Component {
             <Route
               exact 
               path="/" 
-              render={(props) => <Main {...props} timeline={timeline} />}
+              component={Main}
             />
             <Route 
               path="/explore" 
-              render={(props) => <Explore {...props} timeline={searchResult} passSearchQuery={this.updateQuery} />}
+              component={Explore}
             />
             <Route 
               path="/search" 
-              render={(props) => <Explore {...props} timeline={searchResult} passSearchQuery={this.updateQuery} />}
+              component={Explore}
             />
             <Route 
               component={NotFound} 
             />
           </Switch>
-          <SideBar trends={trends} passTrendQuery={this.updateQuery}/>
+          <SideBar/>
         </Wrapper>
       </Router>
     )

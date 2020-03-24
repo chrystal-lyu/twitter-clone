@@ -31,6 +31,14 @@ const timelineReducer = (state = initialState, action) => {
         trends
       }
     }
+
+    case actionTypes.RECEIVE_SEARCH_JSON: {
+      const { result } = action;
+      return {
+        ...state,
+        searchResult: result
+      }
+    }
     
     default:
       return state;

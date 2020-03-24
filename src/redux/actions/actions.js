@@ -18,9 +18,15 @@ const receiveTrendJson = (trends) => ({
   trends
 })
 
+const receiveSearchJson = (result) => ({
+  type: actionTypes.RECEIVE_SEARCH_JSON,
+  result
+})
+
 export default {
   requestTimelineJson,
   receiveTimelineJson,
   requestTrendJson,
-  receiveTrendJson
+  receiveTrendJson,
+  receiveSearchJson
 }
