@@ -14,7 +14,9 @@ const SideBar = ({
   return (
     <Wrapper>
       <Search/>
-      <Trend trends={trends} passClick={passTrendQuery} />
+      <Trend 
+        passClick={passTrendQuery} 
+      />
     </Wrapper>
   );
 }

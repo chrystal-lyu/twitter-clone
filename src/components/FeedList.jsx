@@ -27,7 +27,7 @@ class FeedList extends React.Component {
   }
   componentDidMount() {
     const { dispatch } = this.props;
-    // dispatch(fetchTimeline());
+    dispatch(fetchTimeline());
   }
 
   render () {

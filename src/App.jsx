@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import { 
-  fetchTrends, 
   fetchResult 
 } from './api'
 
@@ -43,14 +42,6 @@ class App extends React.Component {
       trends: [],
       searchResult: []
     }
-  }
-  
-  componentDidMount () {
-    fetchTrends().then((data) => {
-      this.setState({
-        trends: data
-      })
-    })
   }
 
   updateQuery (query) {

@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchTrends } from '../redux/actions/operations'
 import styled from 'styled-components';
 
 import Loader from './Loader';
@@ -74,6 +76,11 @@ class Trend extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(fetchTrends());
+  }
+
   handleClick(query) {
     this.props.passClick(query);
     const { history } = this.props;
@@ -119,6 +126,10 @@ class Trend extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  trends: state.timelineReducer.trends
+})
+
 Trend.defaultProps = defaultProps;
 
-export default withRouter(Trend);
+export default connect(mapStateToProps)(withRouter(Trend));
