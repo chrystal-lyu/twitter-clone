@@ -21,6 +21,10 @@ const Text = styled.div`
   flex-direction: column;
   width: 500px;
   margin-left:15px;
+
+  span:hover {
+    text-decoration: underline;
+  }
 `
 const Head = styled.div`
   display: flex;
@@ -90,9 +94,20 @@ const UserHandle = (props) => {
 }
 
 const TweetBody = (props) => {
+  const rule = /([#|＃|@][^\s]+)/g;
+  let newBody = props.body.split(rule).map((chunk, index) => {
+      if (chunk.match(rule)) {
+          return (
+            <span key={index} style={{
+              'color': 'rgb(29,161,242)'
+            }}>{chunk}</span>
+          )
+      }
+      return chunk;
+  });
   return (
     <div>
-      {props.body}
+      {newBody}
       {props.renderFeedUrl}
       {props.renderMedia}
     </div>
