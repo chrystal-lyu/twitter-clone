@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchTrends } from '../redux/actions/operations'
+import { fetchTrends, fetchSearchResult } from '../redux/actions/operations'
 import styled from 'styled-components';
 
 import Loader from './Loader';
@@ -82,7 +82,8 @@ class Trend extends React.Component {
   }
 
   handleClick(query) {
-    this.props.passClick(query);
+    const { dispatch } = this.props;
+    dispatch(fetchSearchResult(query));
     const { history } = this.props;
     history.push({
       pathname: '/search',
@@ -127,7 +128,8 @@ class Trend extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  trends: state.timelineReducer.trends
+  trends: state.timelineReducer.trends,
+  searchResult: state.timelineReducer.searchResult
 })
 
 Trend.defaultProps = defaultProps;
