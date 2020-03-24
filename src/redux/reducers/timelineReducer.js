@@ -1,8 +1,7 @@
 import actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  timeline: [],
-  searchResult: []
+  timeline: []
 }
 
 const timelineReducer = (state = initialState, action) => {
@@ -17,14 +16,6 @@ const timelineReducer = (state = initialState, action) => {
         ...state,
         timeline
       };
-    }
-
-    case actionTypes.RECEIVE_SEARCH_JSON: {
-      const { result } = action;
-      return {
-        ...state,
-        searchResult: result
-      }
     }
     
     default:

@@ -153,7 +153,7 @@ class Explore extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  searchResult: state.timelineReducer.searchResult
+  searchResult: state.searchReducer.searchResult
 });
-
+g
 export default connect(mapStateToProps)(withRouter(Explore));
