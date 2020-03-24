@@ -129,7 +129,7 @@ class Trend extends React.Component {
 
 const mapStateToProps = (state) => ({
   trends: state.trendReducer.trends,
-  searchResult: state.timelineReducer.searchResult
+  searchResult: state.searchReducer.searchResult
 })
 
 Trend.defaultProps = defaultProps;
