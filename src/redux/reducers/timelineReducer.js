@@ -2,7 +2,6 @@ import actionTypes from '../actions/actionTypes';
 
 const initialState = {
   timeline: [],
-  trends: [],
   searchResult: []
 }
 
@@ -18,18 +17,6 @@ const timelineReducer = (state = initialState, action) => {
         ...state,
         timeline
       };
-    }
-
-    case actionTypes.REQUEST_TREND_JSON: {
-      return state;
-    }
-
-    case actionTypes.RECEIVE_TREND_JSON: {
-      const { trends } = action;
-      return {
-        ...state,
-        trends
-      }
     }
 
     case actionTypes.RECEIVE_SEARCH_JSON: {
