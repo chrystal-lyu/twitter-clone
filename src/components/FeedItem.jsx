@@ -94,7 +94,7 @@ const UserHandle = (props) => {
 }
 
 const TweetBody = (props) => {
-  const rule = /([#|＃|@][^\s]+)/g;
+  const rule = /([#|＃|@][\w]+)/g;
   let newBody = props.body.split(rule).map((chunk, index) => {
       if (chunk.match(rule)) {
           return (
