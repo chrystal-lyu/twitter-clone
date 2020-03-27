@@ -8,10 +8,11 @@ const Wrapper = styled.form `
 
   button {  
     background-color: rgb(29, 161, 242);
-    border-radius: 4px;
+    border-radius: 99px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 5px 15px;
     font-size: 14px;
     font-weight: bold;
     border: none;
