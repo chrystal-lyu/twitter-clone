@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
 
+import SignIn from './SignIn'
 import  { ReactComponent as AppLogo } from '../assets/logo.svg';
 import  { ReactComponent as HomeIconSvg } from '../assets/header_home.svg';
 import  { ReactComponent as ExploreIconSvg } from '../assets/header_explore.svg';
@@ -154,6 +155,7 @@ function Header () {
             )
           })
         }
+        <SignIn/>
       </MenuList>
     </Wrapper>
   );
