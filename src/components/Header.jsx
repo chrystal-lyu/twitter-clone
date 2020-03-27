@@ -5,14 +5,15 @@ import { connect } from 'react-redux';
 import { startLogout } from '../redux/actions/operations';
 
 import SignIn from './SignIn'
-import  { ReactComponent as AppLogo } from '../assets/logo.svg';
-import  { ReactComponent as HomeIconSvg } from '../assets/header_home.svg';
-import  { ReactComponent as ExploreIconSvg } from '../assets/header_explore.svg';
-import  { ReactComponent as NotifIconSvg } from '../assets/header_notification.svg';
-import  { ReactComponent as MessageIconSvg } from '../assets/header_message.svg';
-import  { ReactComponent as BookmarkIconSvg } from '../assets/header_bookmark.svg';
-import  { ReactComponent as ListsIconSvg } from '../assets/header_lists.svg';
-import  { ReactComponent as MoreIconSvg } from '../assets/header_more.svg';
+import { ReactComponent as AppLogo } from '../assets/logo.svg';
+import { ReactComponent as HomeIconSvg } from '../assets/header_home.svg';
+import { ReactComponent as ExploreIconSvg } from '../assets/header_explore.svg';
+import { ReactComponent as NotifIconSvg } from '../assets/header_notification.svg';
+import { ReactComponent as MessageIconSvg } from '../assets/header_message.svg';
+import { ReactComponent as BookmarkIconSvg } from '../assets/header_bookmark.svg';
+import { ReactComponent as ListsIconSvg } from '../assets/header_lists.svg';
+import { ReactComponent as ProfileIconSvg } from '../assets/header_profile.svg';
+import { ReactComponent as MoreIconSvg } from '../assets/header_more.svg';
 
 const Wrapper = styled.div `
   position: relative;
@@ -95,6 +96,7 @@ const NotifIcon = styled(NotifIconSvg)`${createStyle()};`
 const MessageIcon = styled(MessageIconSvg)`${createStyle()};`
 const BookmarkIcon = styled(BookmarkIconSvg)`${createStyle()};`
 const ListsIcon = styled(ListsIconSvg)`${createStyle()};`
+const ProfileIcon = styled(ProfileIconSvg)`${createStyle()}`
 const MoreIcon = styled(MoreIconSvg)`${createStyle()};`
 
 const items = [
@@ -130,7 +132,7 @@ const items = [
   },
   {
     route: '/profile',
-    icon: <MoreIcon />,
+    icon: <ProfileIcon />,
     title: 'Profile',
   },
   {
