@@ -5,6 +5,8 @@ import firebase, { twitterProvider } from '../../firebase/';
 const receiveTimelineJson = actions.receiveTimelineJson;
 const receiveTrendJson = actions.receiveTrendJson;
 const receiveSearchJson = actions.receiveSearchJson;
+const login = actions.login;
+const logout = actions.logout;
 
 export const fetchTimeline = () => {
 	return dispatch => {
@@ -67,6 +69,15 @@ export const startLogin = () => {
   return dispatch => {
     return firebase.auth().signInWithPopup(twitterProvider).then((result) => {
       console.log('Auth worked!', result);
+      const user = {
+        uid: result.user.uid,
+        name: result.user.displayName,
+        screen_name: result.additionalUserInfo.username,
+        profile_img_url: result.additionalUserInfo.profile.profile_image_url_https,
+        token: result.credential.accessToken,
+        secret: result.credential.secret
+      }
+      return dispatch(login(user))
     }, (error) => {
       console.log('Unable to auth', error);
     });
@@ -77,6 +88,7 @@ export const startLogout = () => {
   return dispatch => {
     return firebase.auth().signOut().then(() => {
       console.log('Logged out!');
+      return dispatch(logout());
     });
   };
 }
