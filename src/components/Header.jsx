@@ -144,13 +144,29 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.onLogout = this.onLogout.bind(this);
-    this.state={}
+    this.renderAuthBtn = this.renderAuthBtn.bind(this);
+    this.state = {
+      loggedIn: false
+    }
   }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.auth !== prevProps.auth) {
+      this.setState({ loggedIn: !this.state.loggedIn });
+    }
+  }
+
+  renderAuthBtn() {
+    const { loggedIn } = this.state;
+    return loggedIn ? (<div><a href="/" onClick={this.onLogout}>Logout</a></div>) : <SignIn/>
+  }
+
   onLogout(e) {
     e.preventDefault();
     const { dispatch } = this.props;
     dispatch(startLogout());
   }
+
   render () {
     return (
       <Wrapper>
@@ -168,14 +184,15 @@ class Header extends React.Component {
               )
             })
           }
-          <SignIn/>
-          <div>
-            <a href="/" onClick={this.onLogout}>Logout</a>
-          </div>
+          {this.renderAuthBtn()}
         </MenuList>
       </Wrapper>
     );
   }
 }
 
-export default connect()(Header);
+const mapStateToProps = (state) => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps)(Header);
