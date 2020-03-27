@@ -2,9 +2,9 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { startLogout } from '../redux/actions/operations';
 
 import SignIn from './SignIn'
+import SignOut from './SignOut';
 import { ReactComponent as AppLogo } from '../assets/logo.svg';
 import { ReactComponent as HomeIconSvg } from '../assets/header_home.svg';
 import { ReactComponent as ExploreIconSvg } from '../assets/header_explore.svg';
@@ -145,7 +145,6 @@ const items = [
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.onLogout = this.onLogout.bind(this);
     this.renderAuthBtn = this.renderAuthBtn.bind(this);
     this.state = {
       loggedIn: false
@@ -160,13 +159,7 @@ class Header extends React.Component {
 
   renderAuthBtn() {
     const { loggedIn } = this.state;
-    return loggedIn ? (<div><a href="/" onClick={this.onLogout}>Logout</a></div>) : <SignIn/>
-  }
-
-  onLogout(e) {
-    e.preventDefault();
-    const { dispatch } = this.props;
-    dispatch(startLogout());
+    return loggedIn ? <SignOut/> : <SignIn/>
   }
 
   render () {
