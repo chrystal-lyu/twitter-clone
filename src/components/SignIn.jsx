@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { startLogin } from '../redux/actions/operations'
 import { ReactComponent as TwitterIcon } from '../assets/logo.svg'
 
 const Wrapper = styled.form `
@@ -45,6 +47,8 @@ class SignIn extends React.Component {
   }
   onSubmit = e => {
     e.preventDefault();
+    const { dispatch } = this.props;
+    dispatch(startLogin());
   }
   render () {
     const { error } = this.state;
@@ -57,4 +61,10 @@ class SignIn extends React.Component {
   }
 }
 
-export default SignIn;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps)(SignIn);

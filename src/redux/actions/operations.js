@@ -1,5 +1,6 @@
 import axios from 'axios';
 import actions from './actions';
+import firebase, { twitterProvider } from '../../firebase/';
 
 const receiveTimelineJson = actions.receiveTimelineJson;
 const receiveTrendJson = actions.receiveTrendJson;
@@ -60,4 +61,22 @@ export const fetchSearchResult = (query) => {
         throw(error);
       })
   }
+}
+
+export const startLogin = () => {
+  return dispatch => {
+    return firebase.auth().signInWithPopup(twitterProvider).then((result) => {
+      console.log('Auth worked!', result);
+    }, (error) => {
+      console.log('Unable to auth', error);
+    });
+  };
+}
+
+export const startLogout = () => {
+  return dispatch => {
+    return firebase.auth().signOut().then(() => {
+      console.log('Logged out!');
+    });
+  };
 }

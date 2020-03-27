@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { startLogout } from '../redux/actions/operations';
 
 import SignIn from './SignIn'
 import  { ReactComponent as AppLogo } from '../assets/logo.svg';
@@ -138,27 +140,42 @@ const items = [
   }
 ];
 
-function Header () {
-  return (
-    <Wrapper>
-      <MenuList>
-        <Link to='/'>
-          <Icon/>
-        </Link>
-        {
-          items.map((item, index) => {
-            return (
-              <MenuItemContainer key={index} to={item.route} exact activeClassName="active">
-                {item.icon}
-                <MenuItem>{item.title}</MenuItem>
-              </MenuItemContainer>
-            )
-          })
-        }
-        <SignIn/>
-      </MenuList>
-    </Wrapper>
-  );
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onLogout = this.onLogout.bind(this);
+    this.state={}
+  }
+  onLogout(e) {
+    e.preventDefault();
+    const { dispatch } = this.props;
+    dispatch(startLogout());
+  }
+  render () {
+    return (
+      <Wrapper>
+        <MenuList>
+          <Link to='/'>
+            <Icon/>
+          </Link>
+          {
+            items.map((item, index) => {
+              return (
+                <MenuItemContainer key={index} to={item.route} exact activeClassName="active">
+                  {item.icon}
+                  <MenuItem>{item.title}</MenuItem>
+                </MenuItemContainer>
+              )
+            })
+          }
+          <SignIn/>
+          <div>
+            <a href="/" onClick={this.onLogout}>Logout</a>
+          </div>
+        </MenuList>
+      </Wrapper>
+    );
+  }
 }
 
-export default Header;
+export default connect()(Header);

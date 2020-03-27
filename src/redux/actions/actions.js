@@ -23,10 +23,21 @@ const receiveSearchJson = (result) => ({
   result
 })
 
+const login = (user) => ({
+  type: actionTypes.LOGIN,
+  user
+})
+
+const logout = () => ({
+  type: actionTypes.LOGOUT
+})
+
 export default {
   requestTimelineJson,
   receiveTimelineJson,
   requestTrendJson,
   receiveTrendJson,
-  receiveSearchJson
+  receiveSearchJson,
+  login,
+  logout
 }
