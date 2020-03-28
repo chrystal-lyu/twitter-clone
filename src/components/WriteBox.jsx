@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 const Wrapper = styled.div`
   padding: 15px;
@@ -8,6 +9,7 @@ const Compose = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 `
 const Avatar = styled.div`
   width: 50px;
@@ -15,13 +17,14 @@ const Avatar = styled.div`
   border-radius: 100px;
   background-color: papayawhip;
 `
-const InputBox = styled.textarea`
-  width: 80%;
-  border-color: transparent;
+const InputBox = styled.input`
+  width: 505px;
+  margin-left: 15px;
+  border: none;
   background-color: transparent;
   transition: 0.3s all;
   outline: none;
-  padding: 20px;
+  padding: 10px 0;
   font-size: 18px;
   color: white;
 `
@@ -29,24 +32,51 @@ const Button = styled.button`
   color: white;
   font-size: 16px;
   font-weight: 600;
-  width: 65px;
+  width: 90px;
   padding: 10px;
-  margin: 10px 0 0 auto;
+  margin: 15px 0 0 auto;
   border: none;
   border-radius: 99px;
   display: flex;
+  font-size: 14px;
   justify-content: center;
+  cursor: pointer;
+  background-color: rgb(29, 161, 242);
+  transition: all .2s;
 
-  background-color: ${props => props.theme.main};
+  &:hover {
+    background-color: rgba(29, 161, 242, .7);
+    color: rgba(255,255,255,.7);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+  &:disabled{
+    opacity: 0.5;
+    cursor: auto;
+  }
 `
-Button.defaultProps = {
-  theme: {
-    main: "rgb(29, 161, 242)"
-  } 
-}
 
 class WriteBox extends React.Component {
+  constructor (props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      inputValue: ''
+    }
+  }
+
+  handleChange(e) {
+    const { value } = e.target;
+    this.setState ({
+      inputValue: value
+    })
+  }
+
   render () {
+    const { inputValue } = this.state;
+
     return (
       <Wrapper>
         <Compose>
@@ -54,14 +84,17 @@ class WriteBox extends React.Component {
           <InputBox
             placeholder = "What's happening?"
             type = "text"
+            value = {inputValue}
+            onChange = {this.handleChange}
           />
         </Compose>
         <Button
          role="button"
+         disabled = {inputValue.length > 0 ? false : true}
         >Tweet</Button>
       </Wrapper>
     );
   }
 }
 
-export default WriteBox;
+export default connect()(WriteBox);
