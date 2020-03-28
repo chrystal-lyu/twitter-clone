@@ -9,12 +9,13 @@ const Wrapper = styled.form `
   justify-content: center;
 
   button {  
+    width: 100%;
     background-color: rgb(29, 161, 242);
     border-radius: 99px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5px 15px;
+    padding: 0 15px;
     font-size: 14px;
     font-weight: bold;
     border: none;
@@ -26,6 +27,10 @@ const Wrapper = styled.form `
     &:hover {
       background-color: rgba(29, 161, 242, .7);
       color: rgba(255,255,255,.7);
+    }
+
+    span {
+      padding: 15px 0;
     }
   }
 `
@@ -54,9 +59,18 @@ class SignIn extends React.Component {
   
   render () {
     const { error } = this.state;
+    const { withIcon } = this.props
     return (
       <Wrapper onSubmit={this.onSubmit}>
-        <button type="submit"><Icon/><span>Sign in with Twitter</span></button>
+        {
+          withIcon ? 
+          <button type="submit">
+            <Icon/><span>Sign in with Twitter</span>
+          </button> :
+          <button type="submit">
+            <span>Sign in with Twitter</span>
+          </button>
+        }
         {error && <p>{error.message}</p>}
       </Wrapper>
     )

@@ -1,9 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { getAuthenticationStatus } from '../firebase';
+import SignIn from './SignIn';
 
 const Wrapper = styled.div`
   padding: 15px;
+
+  section {
+    width: 200px;
+    margin: 0 auto;
+  }
 `
 const Compose = styled.div`
   display: flex;
@@ -57,6 +64,12 @@ const Button = styled.button`
     cursor: auto;
   }
 `
+const Message = styled.div`
+  font-size: 20px;
+  font-weight: 800;
+  width: fit-content;
+  margin: 0 auto 15px auto;
+`
 
 class WriteBox extends React.Component {
   constructor (props) {
@@ -76,25 +89,37 @@ class WriteBox extends React.Component {
 
   render () {
     const { inputValue } = this.state;
-
-    return (
-      <Wrapper>
-        <Compose>
-          <Avatar/>
-          <InputBox
-            placeholder = "What's happening?"
-            type = "text"
-            value = {inputValue}
-            onChange = {this.handleChange}
-          />
-        </Compose>
-        <Button
-         role="button"
-         disabled = {inputValue.length > 0 ? false : true}
-        >Tweet</Button>
-      </Wrapper>
-    );
+    if (getAuthenticationStatus()) {
+      return (
+        <Wrapper>
+          <Compose>
+            <Avatar/>
+            <InputBox
+              placeholder = "What's happening?"
+              type = "text"
+              value = {inputValue}
+              onChange = {this.handleChange}
+            />
+          </Compose>
+          <Button
+           role="button"
+           disabled = {inputValue.length > 0 ? false : true}
+          >Tweet</Button>
+        </Wrapper>
+      );
+    } else {
+      return (
+        <Wrapper>
+          <Message>Sign in to tweet</Message>
+          <section><SignIn withIcon /></section>
+        </Wrapper>
+      )
+    }
   }
 }
 
-export default connect()(WriteBox);
+const mapStateToProps = ({ auth }) => {
+  return { auth }
+}
+
+export default connect(mapStateToProps)(WriteBox);
