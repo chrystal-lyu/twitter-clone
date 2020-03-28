@@ -35,22 +35,6 @@ const SearchBox = styled.input`
     opacity: 1;
   }
 `
-const SearchResult = styled.div`
-  background-color: #182734;
-  border-radius: 15px; 
-  padding: 0 15px;
-  margin-top: 10px;
-  margin-left: 40px;
-  
-  ul {
-    padding: 0;
-    list-style-type: none;
-
-    li {
-      margin-top: 10px;
-    }
-  }
-`
 
 class Search extends React.Component {
   constructor(props) {
