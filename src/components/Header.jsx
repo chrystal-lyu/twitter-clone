@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { getAuthenticationStatus } from '../firebase'
 
 import SignIn from './SignIn'
 import SignOut from './SignOut';
@@ -146,23 +147,17 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.renderAuthBtn = this.renderAuthBtn.bind(this);
-    this.state = {
-      loggedIn: false
-    }
+    this.state = {}
   }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.auth !== prevProps.auth) {
-      this.setState({ loggedIn: !this.state.loggedIn });
-    }
-  }
-
+  
   renderAuthBtn() {
-    const { loggedIn } = this.state;
-    return loggedIn ? <SignOut/> : <SignIn/>
+    return getAuthenticationStatus() ? <SignOut/> : <SignIn/>
   }
 
   render () {
+    console.log('this.props:', this.props.auth)
+    console.log('local storage', localStorage)
+    console.log('getAuthenticationStatus', getAuthenticationStatus())
     return (
       <Wrapper>
         <MenuList>
@@ -186,8 +181,8 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  auth: state.auth
-})
+const mapStateToProps = ({ auth }) => {
+  return { auth }
+}
 
 export default connect(mapStateToProps)(Header);

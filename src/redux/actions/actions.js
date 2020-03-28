@@ -1,4 +1,5 @@
 import actionTypes from './actionTypes';
+import { authRef } from '../../firebase'
 
 const requestTimelineJson = () => ({
   type: actionTypes.REQUEST_TIMELINE_JSON
@@ -23,9 +24,9 @@ const receiveSearchJson = (result) => ({
   result
 })
 
-const login = (user) => ({
+const login = () => ({
   type: actionTypes.LOGIN,
-  user
+  currentUser: authRef.currentUser.toJSON(),
 })
 
 const logout = () => ({

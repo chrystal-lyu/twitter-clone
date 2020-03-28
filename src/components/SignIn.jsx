@@ -45,11 +45,13 @@ class SignIn extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.state = { error: null }
   }
+
   onSubmit = e => {
     e.preventDefault();
     const { dispatch } = this.props;
     dispatch(startLogin());
   }
+  
   render () {
     const { error } = this.state;
     return (
@@ -61,10 +63,8 @@ class SignIn extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    auth: state.auth
-  }
+const mapStateToProps = ({ auth }) => {
+  return { auth }
 }
 
 export default connect(mapStateToProps)(SignIn);

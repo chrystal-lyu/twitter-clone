@@ -34,7 +34,6 @@ class SignIn extends React.Component {
     this.state = { error: null }
   }
   onSubmit(e) {
-    e.preventDefault();
     const { dispatch } = this.props;
     dispatch(startLogout());
   }
@@ -50,10 +49,8 @@ class SignIn extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    auth: state.auth
-  }
+const mapStateToProps = ({ auth }) => {
+  return { auth }
 }
 
 export default connect(mapStateToProps)(SignIn);

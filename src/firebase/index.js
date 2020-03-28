@@ -11,5 +11,9 @@ try {
   console.log(err);
 }
 
-export const twitterProvider = new firebase.auth.TwitterAuthProvider();
 export default firebase;
+export const twitterProvider = new firebase.auth.TwitterAuthProvider();
+export const authRef = firebase.auth();
+export const getAuthenticationStatus = () => {
+  return localStorage.getItem("isAuthenticated")
+}
