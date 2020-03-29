@@ -155,9 +155,6 @@ class Header extends React.Component {
   }
 
   render () {
-    console.log('this.props:', this.props.auth)
-    console.log('local storage', localStorage)
-    console.log('getAuthenticationStatus', getAuthenticationStatus())
     return (
       <Wrapper>
         <MenuList>
