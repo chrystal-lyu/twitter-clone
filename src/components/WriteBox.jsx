@@ -18,11 +18,12 @@ const Compose = styled.div`
   justify-content: space-between;
   align-items: center;
 `
-const Avatar = styled.div`
-  width: 50px;
-  height: 50px;
+const AvatarContainer = styled.div`
+  width:50px;
+`
+const Avatar = styled.img`
   border-radius: 100px;
-  background-color: papayawhip;
+  margin-right: 15px;
 `
 const InputBox = styled.input`
   width: 505px;
@@ -89,11 +90,16 @@ class WriteBox extends React.Component {
 
   render () {
     const { inputValue } = this.state;
+    const { auth } = this.props
+    console.log('inside WriteBox/this.props: ',this.props)
     if (getAuthenticationStatus()) {
       return (
         <Wrapper>
           <Compose>
-            <Avatar/>
+          <AvatarContainer>
+            <Avatar alt='avatar' width='50px' height='50px' src={auth.photoURL}/>
+          </AvatarContainer>
+            {/* <Avatar url={auth.photoURL}/> */}
             <InputBox
               placeholder = "What's happening?"
               type = "text"
