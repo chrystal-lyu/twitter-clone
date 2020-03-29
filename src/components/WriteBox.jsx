@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { getAuthenticationStatus } from '../firebase';
 import SignIn from './SignIn';
+import axios from 'axios'
 
 const Wrapper = styled.div`
   padding: 15px;
@@ -76,6 +77,7 @@ class WriteBox extends React.Component {
   constructor (props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.state = {
       inputValue: ''
     }
@@ -88,10 +90,31 @@ class WriteBox extends React.Component {
     })
   }
 
+  handleClick(e) {
+    e.preventDefault();
+    let token = localStorage.access_token;
+    let secret = localStorage.secret_token;
+    axios('/post_status', {params: { 
+      user_token: token, 
+      user_secret: secret,
+      status: this.state.inputValue
+     }})
+    .then(response => {
+      console.log(response)
+      this.setState({
+        inputValue: ''
+      })
+    })
+    .catch(error=> {
+      throw(error);
+    })
+  }
+
   render () {
     const { inputValue } = this.state;
     const { auth } = this.props
     console.log('inside WriteBox/this.props: ',this.props)
+    console.log('inside Header/local storage', localStorage)
     if (getAuthenticationStatus()) {
       return (
         <Wrapper>
@@ -99,8 +122,8 @@ class WriteBox extends React.Component {
           <AvatarContainer>
             <Avatar alt='avatar' width='50px' height='50px' src={auth.photoURL}/>
           </AvatarContainer>
-            {/* <Avatar url={auth.photoURL}/> */}
             <InputBox
+              name = "myinput"
               placeholder = "What's happening?"
               type = "text"
               value = {inputValue}
@@ -108,8 +131,9 @@ class WriteBox extends React.Component {
             />
           </Compose>
           <Button
-           role="button"
            disabled = {inputValue.length > 0 ? false : true}
+           type="button"
+           onClick={this.handleClick}
           >Tweet</Button>
         </Wrapper>
       );

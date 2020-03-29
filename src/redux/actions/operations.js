@@ -73,8 +73,8 @@ export const startLogin = () => {
       await authRef.signInWithPopup(twitterProvider).then(result => {
         console.log('Auth worked!', result);
         localStorage.setItem('isAuthenticated', true)
-        localStorage.setItem('access_token', JSON.stringify(result.credential.accessToken));
-        localStorage.setItem('secret_token', JSON.stringify(result.credential.secret));
+        localStorage.setItem('access_token', result.credential.accessToken);
+        localStorage.setItem('secret_token', result.credential.secret);
         return dispatch(login());
       })
     } catch (error) {
