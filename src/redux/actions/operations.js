@@ -67,6 +67,26 @@ export const fetchSearchResult = (query) => {
   }
 }
 
+export const startPostTweet = (text) => {
+  return dispatch => {
+    let token = localStorage.access_token;
+    let secret = localStorage.secret_token;
+    axios('/post_status', {
+      params: { 
+        user_token: token, 
+        user_secret: secret,
+        status: text
+      }
+    })
+    .then(response => {
+      console.log(response)
+    })
+    .catch(error=> {
+      throw(error);
+    })
+  }
+}
+
 export const startLogin = () => {
   return async dispatch => {
     try {

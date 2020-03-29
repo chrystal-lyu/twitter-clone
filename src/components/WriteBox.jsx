@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { startPostTweet } from '../redux/actions/operations'
 import { getAuthenticationStatus } from '../firebase';
 import SignIn from './SignIn';
-import axios from 'axios'
 
 const Wrapper = styled.div`
   padding: 15px;
@@ -92,29 +92,17 @@ class WriteBox extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    let token = localStorage.access_token;
-    let secret = localStorage.secret_token;
-    axios('/post_status', {params: { 
-      user_token: token, 
-      user_secret: secret,
-      status: this.state.inputValue
-     }})
-    .then(response => {
-      console.log(response)
-      this.setState({
-        inputValue: ''
-      })
-    })
-    .catch(error=> {
-      throw(error);
+    const { inputValue } = this.state;
+    const { dispatch } = this.props;
+    dispatch(startPostTweet(inputValue));
+    this.setState({
+      inputValue: ''
     })
   }
 
   render () {
     const { inputValue } = this.state;
     const { auth } = this.props
-    console.log('inside WriteBox/this.props: ',this.props)
-    console.log('inside Header/local storage', localStorage)
     if (getAuthenticationStatus()) {
       return (
         <Wrapper>

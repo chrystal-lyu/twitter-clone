@@ -24,9 +24,14 @@ const receiveSearchJson = (result) => ({
   result
 })
 
+const postTweet = (text) => ({
+  type: actionTypes.POST_TWEET,
+  text
+})
+
 const login = () => ({
   type: actionTypes.LOGIN,
-  currentUser: authRef.currentUser.toJSON(),
+  currentUser: authRef.currentUser
 })
 
 const logout = () => ({
@@ -39,6 +44,7 @@ export default {
   requestTrendJson,
   receiveTrendJson,
   receiveSearchJson,
+  postTweet,
   login,
   logout
 }
