@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { fetchTimeline } from '../redux/actions/operations'
+import { fetchTimeline, fetchHomeTimeline } from '../redux/actions/operations'
 
 import FeedItem from './FeedItem';
 import Loader from './Loader';
@@ -27,7 +27,11 @@ class FeedList extends React.Component {
   }
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(fetchTimeline());
+    if (localStorage.isAuthenticated) {
+      dispatch(fetchHomeTimeline());
+    } else {
+      dispatch(fetchTimeline());
+    }
   }
 
   render () {

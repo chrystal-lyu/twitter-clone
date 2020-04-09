@@ -86,6 +86,27 @@ app.get('/post_status', function (req, res, next) {
   })
 })
 
+app.get('/my_timeline', function (req, res, next) {
+  const token = req.query.user_token;
+  const secret_token = req.query.user_secret;
+
+  const clientAuth = new Twitter ({
+    consumer_key: process.env.REACT_APP_TWITTER_API_KEY,
+    consumer_secret: process.env.REACT_APP_TWITTER_API_SECRET,
+    access_token_key: token,
+    access_token_secret: secret_token
+  })
+
+  res.header("Access-Control-Allow-Origin", "*");
+  const params = {};
+  clientAuth.get('statuses/home_timeline', params, function(error, tweets, response) {
+    if (!tweets) {
+      console.log(error)
+    }
+    res.send(tweets)
+  })
+})
+
 app.listen(port, function () {
   console.log(`App listening on port ${port}!`)
 });

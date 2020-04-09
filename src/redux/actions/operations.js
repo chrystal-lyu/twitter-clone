@@ -95,6 +95,7 @@ export const startLogin = () => {
         localStorage.setItem('isAuthenticated', true)
         localStorage.setItem('access_token', result.credential.accessToken);
         localStorage.setItem('secret_token', result.credential.secret);
+        console.log('Auth worked! token saved to localStorage',localStorage)
         return dispatch(login());
       })
     } catch (error) {
@@ -113,32 +114,39 @@ export const startLogout = () => {
   };
 }
 
-// export const fetchHomeTimeline = () => {
-//   return dispatch => {
-//     return axios.get('/tweets')
-//       .then(response => {
-//         const responseData = response.data;
-//         let data = [];
-//         responseData.map((child) => {
-//           // trim the original json to what we need to display
-//           const childData = {
-//             id: child.id,
-//             body: child.text,
-//             entities: child.entities,
-//             avatarImg: child.user.profile_image_url,
-//             name: child.user.name,
-//             handle: child.user.screen_name,
-//             time: child.created_at,
-//             favCount: child.favorite_count,
-//             rtCount: child.retweet_count
-//           }
-//           data.push(childData);
-//           return null
-//         })
-//         dispatch(receiveTimelineJson(data))
-//       })
-//       .catch(error => {
-//         throw(error);
-//       });
-//   }
-// }
+export const fetchHomeTimeline = () => {
+  return dispatch => {
+    let token = localStorage.access_token;
+    let secret = localStorage.secret_token;
+    axios.get('/my_timeline', {
+      params: {
+        user_token: token, 
+        user_secret: secret
+      }
+    })
+    .then(response => {
+      const result = response.data;
+      let data = [];
+      result.map((child) => {
+        // trim the original json to what we need to display
+        const childData = {
+          id: child.id,
+          body: child.text,
+          entities: child.entities,
+          avatarImg: child.user.profile_image_url,
+          name: child.user.name,
+          handle: child.user.screen_name,
+          time: child.created_at,
+          favCount: child.favorite_count,
+          rtCount: child.retweet_count
+        }
+        data.push(childData);
+        return null
+      })
+      dispatch(receiveTimelineJson(data))
+    })
+    .catch(error => {
+      throw(error);
+    });
+  }
+}
