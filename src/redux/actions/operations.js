@@ -21,7 +21,7 @@ export const fetchTimeline = () => {
             id: child.id,
             body: child.text,
             entities: child.entities,
-            avatarImg: child.user.profile_image_url,
+            avatarImg: child.user.profile_image_url_https,
             name: child.user.name,
             handle: child.user.screen_name,
             time: child.created_at,
@@ -31,6 +31,7 @@ export const fetchTimeline = () => {
           data.push(childData);
           return null
         })
+        console.log(responseData)
         dispatch(receiveTimelineJson(data))
       })
       .catch(error => {
