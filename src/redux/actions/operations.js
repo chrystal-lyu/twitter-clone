@@ -150,3 +150,40 @@ export const fetchHomeTimeline = () => {
     });
   }
 }
+
+export const fetchUserTimeline = () => {
+  return dispatch => {
+    let token = localStorage.access_token;
+    let secret = localStorage.secret_token;
+    axios.get('/my_tweets', {
+      params: {
+        user_token: token, 
+        user_secret: secret
+      }
+    })
+    .then(response => {
+      const result = response.data;
+      let data = [];
+      result.map((child) => {
+        // trim the original json to what we need to display
+        const childData = {
+          id: child.id,
+          body: child.text,
+          entities: child.entities,
+          avatarImg: child.user.profile_image_url,
+          name: child.user.name,
+          handle: child.user.screen_name,
+          time: child.created_at,
+          favCount: child.favorite_count,
+          rtCount: child.retweet_count
+        }
+        data.push(childData);
+        return null
+      })
+      dispatch(receiveTimelineJson(data))
+    })
+    .catch(error => {
+      throw(error);
+    });
+  }
+}
