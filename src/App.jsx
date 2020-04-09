@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch, hashHistory } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import Header from './components/Header';
@@ -34,7 +34,7 @@ const Wrapper = styled.div `
 class App extends React.Component {  
   render() {
     return (
-      <Router>
+      <Router history={hashHistory} >
         <Wrapper>
           <GlobalStyle/>
           <Header/>
