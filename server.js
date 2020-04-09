@@ -14,10 +14,10 @@ const client = new Twitter ({
   access_token_secret: process.env.REACT_APP_TWITTER_ACCESS_TOKEN_SECRET
 })
 
-app.use(express.static(path.join(__dirname + 'build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname + 'build/index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.get('/tweets', function (req, res, next) {
