@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { startLogin, fetchHomeTimeline } from '../redux/actions/operations'
+import { startLogin, fetchHomeTimeline, fetchProfileTimeline } from '../redux/actions/operations'
 import { ReactComponent as TwitterIcon } from '../assets/logo.svg'
 
 const Wrapper = styled.form `
@@ -59,6 +59,7 @@ class SignIn extends React.Component {
       try {
         await dispatch(startLogin());
         dispatch(fetchHomeTimeline());
+        dispatch(fetchProfileTimeline());
       } catch(error) {
         console.log(error)
       }

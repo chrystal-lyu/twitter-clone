@@ -1,14 +1,13 @@
 import axios from 'axios';
 import actions from './actions';
-// import actionType from './actionTypes'
 import { twitterProvider, authRef } from '../../firebase/';
 
 const receiveTimelineJson = actions.receiveTimelineJson;
 const receiveTrendJson = actions.receiveTrendJson;
 const receiveSearchJson = actions.receiveSearchJson;
+const receiveProfileTimelineJson = actions.receiveProfileTimelineJson;
 const login = actions.login;
 const logout = actions.logout;
-// const receiveHomeTimeline = actions.receiveHomeTimeline;
 
 export const fetchTimeline = () => {
 	return dispatch => {
@@ -151,7 +150,7 @@ export const fetchHomeTimeline = () => {
   }
 }
 
-export const fetchUserTimeline = () => {
+export const fetchProfileTimeline = () => {
   return dispatch => {
     let token = localStorage.access_token;
     let secret = localStorage.secret_token;
@@ -180,7 +179,7 @@ export const fetchUserTimeline = () => {
         data.push(childData);
         return null
       })
-      dispatch(receiveTimelineJson(data))
+      dispatch(receiveProfileTimelineJson(data))
     })
     .catch(error => {
       throw(error);

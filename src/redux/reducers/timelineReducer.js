@@ -1,7 +1,8 @@
 import actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  timeline: []
+  timeline: [],
+  profile_timeline: []
 }
 
 const timelineReducer = (state = initialState, action) => {
@@ -17,7 +18,15 @@ const timelineReducer = (state = initialState, action) => {
         timeline
       };
     }
-    
+
+    case actionTypes.RECEIVE_PROFILE_TIMELINE_JSON: {
+      const { profile_timeline } = action;
+      return {
+        ...state,
+        profile_timeline
+      }
+    }
+
     default:
       return state;
   }

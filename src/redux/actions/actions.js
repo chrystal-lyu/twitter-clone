@@ -29,6 +29,11 @@ const postTweet = (text) => ({
   text
 })
 
+const receiveProfileTimelineJson = (profile_timeline) => ({
+  type: actionTypes.RECEIVE_PROFILE_TIMELINE_JSON,
+  profile_timeline
+})
+
 const login = () => ({
   type: actionTypes.LOGIN,
   currentUser: authRef.currentUser
@@ -45,6 +50,7 @@ export default {
   receiveTrendJson,
   receiveSearchJson,
   postTweet,
+  receiveProfileTimelineJson,
   login,
   logout
 }
