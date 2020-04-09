@@ -36,6 +36,14 @@ class SignIn extends React.Component {
   onSubmit(e) {
     const { dispatch } = this.props;
     dispatch(startLogout());
+    async function logout () {
+      try {
+        await dispatch(startLogout());
+      } catch(error) {
+        console.log(error)
+      }
+    }
+    logout();
   }
 
   render () {
