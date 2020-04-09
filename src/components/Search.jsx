@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchSearchResult } from '../redux/actions/operations'
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -33,63 +35,73 @@ const SearchBox = styled.input`
     opacity: 1;
   }
 `
-const SearchResult = styled.div`
-  background-color: #182734;
-  border-radius: 15px; 
-  padding: 0 15px;
-  margin-top: 10px;
-  margin-left: 40px;
-  
-  ul {
-    padding: 0;
-    list-style-type: none;
-
-    li {
-      margin-top: 10px;
-    }
-  }
-`
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
     this.state = {
-      searchValue: '',
-      searchResult: []
+      searchValue: ''
     }
+  } 
+  
+  componentDidMount () {
+    let search = new URLSearchParams(this.props.location.search);
+    let name = search.get("search_query");
+    if (name && name.length > 1) {
+      this.setState ({
+        searchValue: name
+      })
+    }   
+  }
+
+  handleChange(e) {
+    const { value } = e.target;
+    this.setState({ 
+      searchValue: value
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    window.scrollTo(0, 0);
+    const { searchValue } = this.state;
+    const { history, dispatch } = this.props;
+    dispatch(fetchSearchResult(searchValue));
+    history.push({
+      pathname: '/search',
+      search: '?search_query=' + searchValue
+    })
+    this.setState ({
+      searchValue: searchValue
+    })
   }
 
   render() {
     const { location } = this.props;
-    const { searchResult } = this.state;
+    const { searchValue } = this.state;
     if (location.pathname.match('/explore') || location.pathname.match('/search')) {
       return null
     }
     return (
       <Wrapper>
         <SearchBoxContainer>
-          <SearchBox
-            name = 'text'
-            type = 'text'
-            placeholder = 'Search'
-          />
+          <form onSubmit={this.handleSubmit}>
+            <SearchBox
+              name = 'text'
+              type = 'text'
+              placeholder = 'Search'
+              value = {searchValue}
+              onChange = {this.handleChange}
+            />
+          </form>
         </SearchBoxContainer>
-        {
-          searchResult.length > 0 ?
-            <SearchResult>
-              <ul>
-                {searchResult.map((item) => {
-                  return (
-                    <li key={item.id}>{item.data}</li>
-                  )
-                })}
-              </ul>
-            </SearchResult> :
-            null
-        }
       </Wrapper>
     )
   }
 }
 
-export default withRouter(Search);
+export default connect()(withRouter(Search));

@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Main from './components/Main';
 import SideBar from './components/SideBar';
 import Explore from './components/Explore';
+import Profile from './components/Profile';
 import NotFound from './components/NotFound';
 
 const GlobalStyle = createGlobalStyle`
@@ -50,6 +51,10 @@ class App extends React.Component {
             <Route 
               path="/search" 
               component={Explore}
+            />
+            <Route 
+              path="/profile" 
+              component={Profile}
             />
             <Route 
               component={NotFound} 

@@ -1,15 +1,20 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getAuthenticationStatus } from '../firebase'
 
-import  { ReactComponent as AppLogo } from '../assets/logo.svg';
-import  { ReactComponent as HomeIconSvg } from '../assets/header_home.svg';
-import  { ReactComponent as ExploreIconSvg } from '../assets/header_explore.svg';
-import  { ReactComponent as NotifIconSvg } from '../assets/header_notification.svg';
-import  { ReactComponent as MessageIconSvg } from '../assets/header_message.svg';
-import  { ReactComponent as BookmarkIconSvg } from '../assets/header_bookmark.svg';
-import  { ReactComponent as ListsIconSvg } from '../assets/header_lists.svg';
-import  { ReactComponent as MoreIconSvg } from '../assets/header_more.svg';
+import SignIn from './SignIn'
+import SignOut from './SignOut';
+import { ReactComponent as AppLogo } from '../assets/logo.svg';
+import { ReactComponent as HomeIconSvg } from '../assets/header_home.svg';
+import { ReactComponent as ExploreIconSvg } from '../assets/header_explore.svg';
+import { ReactComponent as NotifIconSvg } from '../assets/header_notification.svg';
+import { ReactComponent as MessageIconSvg } from '../assets/header_message.svg';
+import { ReactComponent as BookmarkIconSvg } from '../assets/header_bookmark.svg';
+import { ReactComponent as ListsIconSvg } from '../assets/header_lists.svg';
+import { ReactComponent as ProfileIconSvg } from '../assets/header_profile.svg';
+import { ReactComponent as MoreIconSvg } from '../assets/header_more.svg';
 
 const Wrapper = styled.div `
   position: relative;
@@ -92,6 +97,7 @@ const NotifIcon = styled(NotifIconSvg)`${createStyle()};`
 const MessageIcon = styled(MessageIconSvg)`${createStyle()};`
 const BookmarkIcon = styled(BookmarkIconSvg)`${createStyle()};`
 const ListsIcon = styled(ListsIconSvg)`${createStyle()};`
+const ProfileIcon = styled(ProfileIconSvg)`${createStyle()}`
 const MoreIcon = styled(MoreIconSvg)`${createStyle()};`
 
 const items = [
@@ -127,7 +133,7 @@ const items = [
   },
   {
     route: '/profile',
-    icon: <MoreIcon />,
+    icon: <ProfileIcon />,
     title: 'Profile',
   },
   {
@@ -137,26 +143,43 @@ const items = [
   }
 ];
 
-function Header () {
-  return (
-    <Wrapper>
-      <MenuList>
-        <Link to='/'>
-          <Icon/>
-        </Link>
-        {
-          items.map((item, index) => {
-            return (
-              <MenuItemContainer key={index} to={item.route} exact activeClassName="active">
-                {item.icon}
-                <MenuItem>{item.title}</MenuItem>
-              </MenuItemContainer>
-            )
-          })
-        }
-      </MenuList>
-    </Wrapper>
-  );
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.renderAuthBtn = this.renderAuthBtn.bind(this);
+    this.state = {}
+  }
+  
+  renderAuthBtn() {
+    return getAuthenticationStatus() ? <SignOut/> : <SignIn/>
+  }
+
+  render () {
+    return (
+      <Wrapper>
+        <MenuList>
+          <Link to='/'>
+            <Icon/>
+          </Link>
+          {
+            items.map((item, index) => {
+              return (
+                <MenuItemContainer key={index} to={item.route} exact activeClassName="active">
+                  {item.icon}
+                  <MenuItem>{item.title}</MenuItem>
+                </MenuItemContainer>
+              )
+            })
+          }
+          {this.renderAuthBtn()}
+        </MenuList>
+      </Wrapper>
+    );
+  }
 }
 
-export default Header;
+const mapStateToProps = ({ auth }) => {
+  return { auth }
+}
+
+export default connect(mapStateToProps)(Header);

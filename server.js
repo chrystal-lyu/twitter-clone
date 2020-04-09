@@ -62,6 +62,72 @@ app.get('/search', function(req, res, next) {
   });
 });
 
+app.get('/post_status', function (req, res, next) {
+  const token = req.query.user_token;
+  const secret_token = req.query.user_secret;
+  const new_status = req.query.status;
+
+  const clientAuth = new Twitter ({
+    consumer_key: process.env.REACT_APP_TWITTER_API_KEY,
+    consumer_secret: process.env.REACT_APP_TWITTER_API_SECRET,
+    access_token_key: token,
+    access_token_secret: secret_token
+  })
+
+  res.header("Access-Control-Allow-Origin", "*");
+  const params = {
+    status: new_status 
+  };
+  clientAuth.post('statuses/update', params, function(error, tweets, response) {
+    if (!tweets) {
+      console.log(error)
+    }
+    res.send(tweets);
+  })
+})
+
+app.get('/my_timeline', function (req, res, next) {
+  const token = req.query.user_token;
+  const secret_token = req.query.user_secret;
+
+  const clientAuth = new Twitter ({
+    consumer_key: process.env.REACT_APP_TWITTER_API_KEY,
+    consumer_secret: process.env.REACT_APP_TWITTER_API_SECRET,
+    access_token_key: token,
+    access_token_secret: secret_token
+  })
+
+  res.header("Access-Control-Allow-Origin", "*");
+  const params = {};
+  clientAuth.get('statuses/home_timeline', params, function(error, tweets, response) {
+    if (!tweets) {
+      console.log(error)
+    }
+    res.send(tweets)
+  })
+})
+
+app.get('/my_tweets', function (req, res, next) {
+  const token = req.query.user_token;
+  const secret_token = req.query.user_secret;
+
+  const clientAuth = new Twitter ({
+    consumer_key: process.env.REACT_APP_TWITTER_API_KEY,
+    consumer_secret: process.env.REACT_APP_TWITTER_API_SECRET,
+    access_token_key: token,
+    access_token_secret: secret_token
+  })
+
+  res.header("Access-Control-Allow-Orgin","*");
+  const params = {};
+  clientAuth.get('statuses/user_timeline', params, function(error, tweets, response) {
+    if (!tweets) {
+      console.log(error)
+    }
+    res.send(tweets)
+  })
+})
+
 app.listen(port, function () {
   console.log(`App listening on port ${port}!`)
 });

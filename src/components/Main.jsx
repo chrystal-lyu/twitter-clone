@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import WriteBox from './WriteBox'
 import FeedList from './FeedList';
 
 const Wrapper = styled.div `
@@ -22,14 +23,13 @@ const Divider = styled.div`
   background-color: rgb(37, 51, 65);
 `
 
-const Main = ({
-  timeline
-}) => {
+const Main = () => {
   return (
     <Wrapper>
       <Home>Home</Home>
+      <WriteBox/>
       <Divider/>
-      <FeedList data={timeline}/>
+      <FeedList/>
     </Wrapper>
   );
 };
