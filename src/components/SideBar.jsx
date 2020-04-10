@@ -7,16 +7,11 @@ const Wrapper = styled.div `
   width: 350px;
 `
 
-const SideBar = ({
-  trends,
-  passTrendQuery
-}) => {
+const SideBar = () => {
   return (
     <Wrapper>
       <Search/>
-      {/* <Trend 
-        passClick={passTrendQuery} 
-      /> */}
+      <Trend/>
     </Wrapper>
   );
 }

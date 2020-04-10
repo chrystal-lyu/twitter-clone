@@ -78,7 +78,11 @@ class Trend extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(fetchTrends());
+    try {
+      dispatch(fetchTrends());
+    } catch(err) {
+      console.log(err)
+    }
   }
 
   handleClick(query) {
@@ -100,7 +104,7 @@ class Trend extends React.Component {
   render () {
     const { trends } = this.props;
     const { count } = this.state;
-    if (trends.length === 0) {
+    if (!trends || trends.length === 0) {
       return (
         <LoaderWrapper>
           <Loader isLoading />
