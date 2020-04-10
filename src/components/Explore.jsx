@@ -133,7 +133,7 @@ class Explore extends React.Component {
                         key={item.id}
                         body={item.text}
                         entities={item.entities}
-                        avatarImg={item.user.profile_image_url}
+                        avatarImg={item.user.profile_image_url_https}
                         name={item.user.name}
                         handle={item.user.screen_name}
                         time={item.created_at}

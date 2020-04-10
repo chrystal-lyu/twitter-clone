@@ -142,7 +142,7 @@ class FeedItem extends React.Component {
     if (this.props.entities.media) {
       return (
         <TweetMediaContainer>
-          <img alt="" src={this.props.entities.media[0].media_url}/>
+          <img alt="img" src={this.props.entities.media[0].media_url_https}/>
         </TweetMediaContainer>
       )
     }
